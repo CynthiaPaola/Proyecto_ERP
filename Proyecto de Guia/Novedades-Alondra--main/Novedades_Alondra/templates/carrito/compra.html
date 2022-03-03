@@ -1,0 +1,80 @@
+{% block contenido %}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/estilo1.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{url_for('static',filename='css/sweetalert2.min.css')}}">
+    <main>
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col">
+                    <h2 class="d-flex justify-content-center mb-3">Realizar Compra</h2>
+                    <form action="" id="formulario-tarjeta" class="formulario-tarjeta">
+                        <label for="cliente" class="col-12 col-md-2 col-form-label h2">Cliente :</label>
+                            <div class="col-12 col-md-10">
+                                <input type="text" class="form-control" id="cliente"
+                                    placeholder="Ingresa nombre cliente" name="nombre" value="{{current_user.nombreCompleto}}" readonly>
+
+                            </div>
+                        <div id="carrito" class="form-group table-responsive" >
+
+                            <table class="table" id="lista-compra" >
+                                <thead>
+                                <tr>
+                                        <td scope="col">Id</td>
+                                        <td scope="col">IdUsuario</td>
+                                        <td scope="col">IdProducto</td>
+                                        <td scope="col">Fecha</td>
+                                        <td scope="col">Cantidad</td>
+                                        <td scope="col">Estatus</td>
+                                        <td scope="col">Ver</td>
+                                        <td scope="col">Eliminar</td>
+                                </tr>
+                                {% for car in carritos %}
+                                <tr>
+                                    <td>{{car.idCarrito}}</td>
+                                    <td>{{car.idCarrito}}</td>
+                                    <td>{{car.idCarrito}}</td>
+                                    <td>{{car.idCarrito}}</td>
+                                    <td>{{car.idCarrito}}</td>
+                                    <td>{{car.idCarrito}}</td>
+                                    <td><a href="/Categorias/">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a><a href="/productos" class="btn btn-info btn-block">Ver</a></td>
+                                    <td><a href="/carrito/eliminacionfisica/{{car.idCarrito}}" class="borrar-producto fas fa-times-circle"></a></td>
+
+                                </tr>
+                                {% endfor %}
+
+                                </thead>
+                                <tbody >
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="row justify-content-between">
+                            <div class="col-md-4 mb-2">
+                                <a href="/productos" class="btn btn-info btn-block">Seguir comprando</a>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </main>
+
+    </div>
+<script src="js/Prodcarrito.js"></script>
+
+{% endblock %}

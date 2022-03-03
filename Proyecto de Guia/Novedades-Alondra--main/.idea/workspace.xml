@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="03d398a1-7089-403a-b7ac-1118a6578069" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>mes</find>
+      <find>form</find>
+      <find>firma</find>
+      <find>usuarios</find>
+      <find>/Usuarios/Editar</find>
+      <find>if no</find>
+      <find>pass</find>
+      <find>Tarjeta</find>
+      <find>editarPer</find>
+      <find>pas</find>
+      <find>compra.h</find>
+      <find>curr</find>
+      <find>tarjeta</find>
+      <find>curre</find>
+      <find>categorias/eliminar</find>
+      <find>ValidarSecion</find>
+      <find>ValidaSecion</find>
+      <find>validaSecion</find>
+      <find>eliminar</find>
+      <find>productos/eli</find>
+      <find>nombre</find>
+      <find>compra</find>
+      <find>categoria</find>
+      <find>cantidad</find>
+      <find>td</find>
+      <find>td&gt;</find>
+      <find>form-control</find>
+      <find>producto</find>
+      <find>input</find>
+      <find>carrito</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Shopitesz/static/css/estiloRegistrar.css" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/usuarios/login.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/js/usuario.js" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/imagen.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/usuarios/a.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/css/estilo.css" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/usuarios/verPerfil.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/as.py" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/as.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/usuarios/EditarPerfil.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/usuarios/VerPerfil.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/usuarios/registrarCuenta.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/css/estiloConsulta.css" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/Categorias/consultaGeneral.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/css/estilos2.css" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/Prueba.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/Categorias/editarCategoria.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/Categorias/agregarCategoria.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/js/jsproductos.js" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/productos/editarProductos.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/productos/nuevoProducto.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/Tarjeta/Edictar.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/Tarjeta/Editar.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/Tarjeta/EditarTarjeta.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/js/jstarjeta2.js" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/Tarjeta/Tarjeta.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/usuarios/consultaGeneral.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/js/EditarPerfiles.js" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/css/estiloVerPerfil.css" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/usuarios/Editar.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/usuarios/EditarPerfiles.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/Tarjeta/Tarjetas.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/js/jscarrito.js" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/js/agregarCarrito.js" />
+        <option value="$PROJECT_DIR$/Shopitesz/prueba.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/js/compra.js" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/pedidos/consultaGeneral.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/productos/consultaGeneral.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/productos/consultaProducto.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/js/jstarjeta.js" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/comunes/base.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/static/js/Prodcarrito.js" />
+        <option value="$PROJECT_DIR$/Shopitesz/templates/carrito/compra.html" />
+        <option value="$PROJECT_DIR$/Shopitesz/modelo/Dao.py" />
+        <option value="$PROJECT_DIR$/Shopitesz/app.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="635" />
+    <option name="y" value="93" />
+    <option name="width" value="699" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Novedades-Alondra-" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Novedades-Alondra-" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Novedades_Alondra" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ESPINOZA\Documents\GitHub\Verano_Shopitesz_Eq6\Shopitesz\templates\productos" />
+      <recent name="C:\Users\ESPINOZA\Documents\GitHub\Verano_Shopitesz_Eq6\Shopitesz\static\js" />
+      <recent name="C:\Users\ESPINOZA\Documents\GitHub\Verano_Shopitesz_Eq6\Shopitesz\templates\Tarjeta" />
+      <recent name="C:\Users\ESPINOZA\Documents\GitHub\Verano_Shopitesz_Eq6\Shopitesz\templates\usuarios" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Verano_Shopitesz_Eq6" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\aj915\OneDrive\Documentos\GitHub\Novedades-Alondra-\Novedades_Alondra\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Verano_Shopitesz_Eq6" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.app" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="03d398a1-7089-403a-b7ac-1118a6578069" name="Default Changelist" comment="" />
+      <created>1627348578859</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1627348578859</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21800596" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21440262" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3289689" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3289689" />
+      <window_info active="true" anchor="bottom" id="Inspection Results" order="11" visible="true" weight="0.3289689" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2217262" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3207856" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3289689" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info active="true" anchor="bottom" id="Inspection Results" order="11" visible="true" weight="0.3289689" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/css/estilo.css" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/principal.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/Categorias/ConsultaCategoría.html" />
+    <entry file="file://$USER_HOME$/PycharmProjects/Proyecto/venv/Lib/site-packages/werkzeug/exceptions.py" />
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/web-forms2.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="66" column="17" lean-forward="true" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/as.py" />
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/common.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="131" column="25" lean-forward="true" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/as.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/usuarios/EditarPerfil.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/usuarios/registrarCuenta.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/css/estilostarjetas.css" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/css/estiloConsulta.css" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/css/estilos2.css" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/Categorias/consultaIndividuall.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/Prueba.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/js/jsproductos.js" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/usuarios/VerPerfil.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/js/script.js" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/js/jstarjeta2.js" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/Tarjeta/EditarTarjeta.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/Categorias/consultaGeneral.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/css/estiloVerPerfil.css" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/js/EditarPerfiles.js" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/Categorias/agregarCategoria.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/usuarios/Editar.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/usuarios/EditarPerfiles.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/usuarios/consultaGeneral.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/Tarjeta/Tarjetas.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/Categorias/editarCategoria.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/js/jscarrito.js" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/js/agregarCarrito.js" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/prueba.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/js/compra.js" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/js/pedido.js" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/js/carrito.js" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/pedidos/pagPedidos.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/pedidos/pagDetallesPedidos.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/pedidos/consultaGeneral.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/productos/editarProductos.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/productos/nuevoProducto.html" />
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/embed.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/PycharmProjects/Proyecto/venv/Lib/site-packages/jinja2/utils.py" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/app.py" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/modelo/Dao.py" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/productos/consultaGeneral.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/js/jstarjeta.js" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/static/js/Prodcarrito.js" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/Tarjeta/Tarjeta.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/productos/ConsultaProducto.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/comunes/base.html" />
+    <entry file="file://$PROJECT_DIR$/Shopitesz/templates/carrito/compra.html" />
+  </component>
+</project>
