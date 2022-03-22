@@ -1,0 +1,17 @@
+
+.welcome{
+	text-align: center;
+	padding: 20px 0;
+}
+.welcome-title{
+	font-size: 2em;
+}
+.welcome-txt{
+	font-size: 1.3em;
+}
+.parrafo{
+	margin: auto;
+	width: 960px;
+	height: 880px;
+	background-image: linear-gradient(to right, rgba(161, 210 ,206, 0.61),white);
+}
