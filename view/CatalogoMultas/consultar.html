@@ -20,24 +20,26 @@
                         <thead class="thead-dark">
                             <th class="text-center">ID</th>
                             <th class="text-center">NOMBRE</th>
-                            <th class="text-center">SIGLAS</th>
+                            <th class="text-center">DESCRIPCION</th>
+                            <th class="text-center">PRECIO</th>
                             <th class="text-center">ESTATUS</th>
                             <th class="text-center">VER</th>
                             <th class="text-center">ELIMINAR</th>
                         </thead>
-                        {% for estates in est %}
+                        {% for catalogo in catal %}
                         <tr>
-                            <td class="text-center">{{estates.idEstado}}</td>
-                            <td class="text-center">{{estates.nombre}}</td>
-                            <td class="text-center">{{estates.siglas}}</td>
-                            <td class="text-center">{{estates.estatus}}</td>
+                            <td class="text-center">{{catalogo.idCatalogoMultas}}</td>
+                            <td class="text-center">{{catalogo.nombre}}</td>
+                            <td class="text-center">{{catalogo.descripcion}}</td>
+                            <td class="text-center">{{catalogo.precio}}</td>
+                            <td class="text-center">{{catalogo.estatus}}</td>
                             <td class="text-center">
-                                <a href="/estados/ver/{{estates.idEstado}}">
+                                <a href="/estados/ver/{{catalogo.idEstado}}">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                             </td>
                             <td class="text-center">
-                                <a href="/estados/eliminarEstado/{{estates.idEstado}}">
+                                <a href="/catalogo/eliminarEstado/{{catalogo.idEstado}}">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>
@@ -58,47 +60,6 @@
              </div>
             {% endblock %}
         <p class="text text-center">Este es el pie de pagina</p>
-          <!-- Paginacion y Busqueda Inicio -->
-     <!-- JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
-        </script>
-    <!-- DATATABLES -->
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
-    </script>
-         <!-- BOOTSTRAP -->
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('#tablax').DataTable({
-                language: {
-                    processing: "Tratamiento en curso...",
-                    search: "Buscar&nbsp;:",
-                    lengthMenu: "Agrupar de _MENU_ Estados",
-                    info: "Mostrando del item _START_ al _END_ de un total de _TOTAL_ items",
-                    infoEmpty: "No existen datos.",
-                    infoFiltered: "(filtrado de _MAX_ elementos en total)",
-                    infoPostFix: "",
-                    loadingRecords: "Cargando...",
-                    zeroRecords: "No se encontraron datos con tu busqueda",
-                    emptyTable: "No hay datos disponibles en la tabla.",
-                    paginate: {
-                        first: " Primero ",
-                        previous: " Anterior ",
-                        next: " Siguiente ",
-                        last: " Ultimo "
-                    },
-                    aria: {
-                        sortAscending: ": active para ordenar la columna en orden ascendente",
-                        sortDescending: ": active para ordenar la columna en orden descendente"
-                    }
-                },
-                scrollY: 400,
-                lengthMenu: [ [2, 25, -1], [2, 25, "All"] ],
-            });
-        });
-    </script>
-<!-- Paginacion y Busqueda Fin -->
+
     </body>
 </html>
