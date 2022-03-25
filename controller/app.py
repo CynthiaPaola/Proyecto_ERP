@@ -98,3 +98,28 @@ def consultarCategorias():
 if __name__ == '__main__':
     db.init_app(app)
     app.run(debug=True)
+#________________________________________________________________________________
+#--------------------------------Categorias empese aqui----------------------------------
+#________________________________________________________________________________
+
+@app.route('/categorias/registrarCategorias')
+#@login_required
+def registrarCategorias():
+    return render_template('/categorias/nuevo.html')
+
+@app.route('/categorias/guardandoCategorias',methods=['post'])
+#@login_required
+def guardandoCategorias():
+    categorias = Categorias()
+    categorias.nombre = request.form['nombre']
+    categorias.estatus = request.form['estatus']
+    categorias.insertar()
+    flash('Catalogo de categorias registrado exitosamente')
+    return redirect(url_for('registrarCategorias'))
+
+
+if __name__ == '__main__':
+    db.init_app(app)
+    app.run(debug=True)
+
+    
