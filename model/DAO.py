@@ -62,3 +62,36 @@ class Categorias(db.Model):
         obj = self.consultaIndividual(id)
         db.session.delete(obj)
         db.session.commit()
+        
+        
+ #-----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------Editorial---------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+
+class Editorial(db.Model):
+    __tablename__ = 'editorial'
+    idEditorial = Column(Integer, primary_key=True)
+    nombre = Column(String(45), nullable=False)
+    direccion = Column(String(140), nullable=False)
+    telefono = Column(CHAR(15), nullable=False)
+    correo = Column(String(45),nullable=False)
+    pais = Column(String(45), nullable=False)
+
+    def consultaGeneral(self):
+        return self.query.all()
+
+    def consultaIndividual(self, id):
+        return self.query.get(id)
+
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self, id):
+        obj = self.consultaIndividual(id)
+        db.session.delete(obj)
+        db.session.commit()
