@@ -39,12 +39,12 @@ def consultarCatalogoMultas():
     return render_template('/catalogoMultas/consultar.html', catal=catalogo.consultaGeneral())
 
 @app.route('/catalogoMultas/registrarCatalogoMultas')
-@login_required
+#@login_required
 def registrarCatalogoMultas():
     return render_template('/catalogoMultas/nuevo.html')
 
 @app.route('/catalogoMultas/guardandoCatalogoMultas',methods=['post'])
-@login_required
+#@login_required
 def guardandoCatalogoMultas():
     catalogo = CatalogoMultas()
     catalogo.nombre = request.form['nombre']
@@ -56,17 +56,17 @@ def guardandoCatalogoMultas():
     return redirect(url_for('registrarCatalogoMultas'))
 
 @app.route('/catalogoMultas/ver/<int:id>')
-@login_required
+#@login_required
 def editarCatalogoMultas(id):
     catalogo = CatalogoMultas()
     return render_template('/catalogoMultas/editar.html', catal=catalogo.consultaIndividual(id))
 
 @app.route('/catalogoMultas/editandoCatalogoMultas',methods=['post'])
-@login_required
+#@login_required
 def editandoCatalogoMultas():
     try:
         catalogo = CatalogoMultas()
-        catalogo.idCatalogoMultas = request.form['idEstado']
+        catalogo.idCatalogoMultas = request.form['idCatalogoMultas']
         catalogo.nombre = request.form['nombre']
         catalogo.descripcion = request.form['descripcion']
         catalogo.precio = request.form['precio']
@@ -78,7 +78,7 @@ def editandoCatalogoMultas():
     return render_template('/catalogoMultas/editar.html', catal=catalogo)
 
 @app.route('/catalogoMultas/eliminarCatalogoMultas/<int:id>')
-@login_required
+#@login_required
 def eliminarCatalogoMultas(id):
     catalogo = CatalogoMultas()
     catalogo.eliminar(id)

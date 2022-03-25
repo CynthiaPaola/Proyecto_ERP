@@ -12,9 +12,9 @@
             {% block content %}
              <div class="container-fluid">
                 <div class="well">
-                    <h1 class="text-center">ESTADOS REGISTRADOS</h1>
+                    <h1 class="text-center">CATALOGO MULTAS REGISTRADOS</h1>
                     <br>
-                    <a href="/estados/registrarEstados" class="btn btn-info">Registrar Estados</a>
+                    <a href="/catalogoMultas/registrarCatalogoMultas" class="btn btn-info">Registrar Catalogo Multas</a>
                     <div class="table-responsive">
                     <table  id="tablax" class="table">
                         <thead class="thead-dark">
@@ -34,12 +34,12 @@
                             <td class="text-center">{{catalogo.precio}}</td>
                             <td class="text-center">{{catalogo.estatus}}</td>
                             <td class="text-center">
-                                <a href="/estados/ver/{{catalogo.idEstado}}">
+                                <a href="/catalogoMultas/ver/{{catalogo.idCatalogoMultas}}">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                             </td>
                             <td class="text-center">
-                                <a href="/catalogo/eliminarEstado/{{catalogo.idEstado}}">
+                                <a href="/catalogoMultas/eliminarCatalogoMultas/{{catalogo.idCatalogoMultas}}">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>

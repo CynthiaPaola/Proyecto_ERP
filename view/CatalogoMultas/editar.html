@@ -12,28 +12,32 @@
                     <div class="row">
                         <div class="col-sm-4" style="background-color: none;"></div>
                         <div class="well col-sm-4">
-                        <h1 class="text-center">REGISTRO DE ESTADOS</h1>
-                        <form action="/estados/editandoEstado" method="post" enctype="multipart/form-data">
+                        <h1 class="text-center">REGISTRO DE CATALGO MULTAS</h1>
+                        <form action="/catalogoMultas/editandoCatalogoMultas" method="post" enctype="multipart/form-data">
                             <div class="form-group text-center">
-                                <label>ID ESTADO</label>
-                                <input type="number" name="idEstado" value="{{estates.idEstado}}" class="form-control text-center" readonly>
+                                <label>ID CATALOGO MULTA</label>
+                                <input type="number" name="idCatalogoMultas" value="{{catal.idCatalogoMultas}}" class="form-control text-center" readonly>
                             </div>
                             <div class="form-group">
                                 <label>NOMBRE</label>
-                                <input type="text" name="nombreEstado" value="{{estates.nombre}}" pattern="[A-z]{1,15}" class="form-control text-center" required>
+                                <input type="text" name="nombre" value="{{catal.nombre}}" pattern="[A-z]{1,15}" class="form-control text-center" required>
                             </div>
 
                             <div class="form-group">
-                                <label>SIGLAS</label>
-                                <input type="text" name="siglas" value="{{estates.siglas}}" pattern="[A-z]{1,15}" class="form-control text-center" required>
+                                <label>Descripcion</label>
+                                <input type="text" name="descripcion" value="{{catal.descripcion}}" class="form-control text-center" required>
+                            </div>
+                            <div class="form-group">
+                                <label>PRECIO</label>
+                                <input type="number" name="precio" value="{{catal.precio}}" class="form-control text-center" required>
                             </div>
                             <div  class="mb-3">
                                 <label class="form-label">Estatus: </label>
                                 <label class="form-check-label" for="radio1">
-                                    <input type="radio" id="radio1" name="estatus" value="A"checked>Activo
+                                    <input type="radio" id="radio1" name="estatus" value="1"checked>Activo
                                 </label>
                                 <label class="form-check-label" for="radio2">
-                                    <input type="radio"  id="radio2" name="estatus" value="I">Inactivo
+                                    <input type="radio"  id="radio2" name="estatus" value="0">Inactivo
                                 </label>
                             </div>
 
@@ -41,7 +45,7 @@
 
                         <nav id="bloqueBotones">
                             <button type="submit" class="btn btn-success">Actualizar</button>
-                            <a href="/estados/consultarEstados" class="btn btn-warning">Regresar</a>
+                            <a href="/catalogoMultas/consultarCatalogoMultas" class="btn btn-warning">Regresar</a>
                         </nav>
                         </form>
                         <br>

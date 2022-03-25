@@ -13,8 +13,8 @@
                     <div class="row">
                         <div class="col-sm-4" style="background-color: none;"></div>
                         <div class="well col-sm-4">
-                        <h1 class="text-center">REGISTRO DE ESTADOS</h1>
-                        <form action="/estados/guardandoEstado" method="post" enctype="multipart/form-data">
+                        <h1 class="text-center">Catalogo de Multas</h1>
+                        <form action="/catalogoMultas/guardandoCatalogoMultas" method="post" enctype="multipart/form-data">
 
                         <div  class="form-group">
                             <label for="estateName">Nombre</label>
@@ -22,21 +22,25 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="siglasEst" class="form-label">Siglas</label>
-                            <input type="text" class="form-control" id="siglasEst"  placeholder="Siglas del estado" maxlength="10" required name="siglas">
+                            <label for="siglasEst" class="form-label">descripcion</label>
+                            <input type="text" class="form-control" id="descripcion"  placeholder="Siglas del estado" maxlength="10" required name="descripcion">
+                        </div>
+                            <div class="form-group">
+                            <label for="siglasEst" class="form-label">precio</label>
+                            <input type="number" class="form-control" id="siglasEst"  placeholder="Siglas del estado" maxlength="10" required name="precio">
                         </div>
                         <div  class="mb-3">
                                 <label class="form-label">Estatus: </label>
                                 <label class="form-check-label" for="radio1">
-                                    <input type="radio" id="radio1" name="estatus" value="A"checked>Activo
+                                    <input type="radio" id="radio1" name="estatus" value="1"checked>Activo
                                 </label>
                                 <label class="form-check-label" for="radio2">
-                                    <input type="radio"  id="radio2" name="estatus" value="I">Inactivo
+                                    <input type="radio"  id="radio2" name="estatus" value="0">Inactivo
                                 </label>
                         </div>
                         <nav id="bloqueBotones">
                             <button type="submit" class="btn btn-success">Registrar</button>
-                            <a href="/estados/consultarEstados" class="btn btn-warning">Regresar</a>
+                            <a href="/catalogoMultas/consultarCatalogoMultas" class="btn btn-warning">Regresar</a>
                         </nav>
 
                         </form>
