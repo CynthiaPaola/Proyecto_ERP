@@ -4,7 +4,7 @@ from urllib import request
 from flask import Flask,render_template,request,flash,redirect,url_for,abort
 from flask_bootstrap import Bootstrap
 from flask_login import current_user,login_user,logout_user,login_manager,login_required,LoginManager
-from model.DAO import db, CatalogoMultas
+from model.DAO import db, CatalogoMultas, Categorias
 app=Flask(__name__, template_folder='../view', static_folder='../static')
 Bootstrap(app)
 #---------------------Conexion ESPINOZA-----------------------------------------
@@ -84,6 +84,16 @@ def eliminarCatalogoMultas(id):
     catalogo.eliminar(id)
     flash('Registro del Catalogo de Multas eliminado con exito')
     return redirect(url_for('consultarCatalogoMultas'))
+
+#________________________________________________________________________________
+#--------------------------------Categorias----------------------------------
+#________________________________________________________________________________
+@app.route('/categorias/consultarCategorias')
+#@login_required
+def consultarCategorias():
+    categorias = Categorias()
+    return render_template('/categorias/consultar.html', catog=categorias.consultaGeneral())
+
 
 if __name__ == '__main__':
     db.init_app(app)
