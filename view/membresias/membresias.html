@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <title>{% block title %}Libreria{% endblock %}</title>
+           <!-- Paginacion y Busqueda Inicio -->
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+          <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+          <!-- Paginacion y Busqueda Fin -->
+          <link rel="stylesheet" href="/static/css/estilos.css">
+    </head>
+    <body>
+        {% include "common/navigation_bar.html" %}
+            {% block content %}
+             <div class="container-fluid">
+                <div class="well">
+                    <h1 class="text-center">MEMBRESIAS REGISTRADAS</h1>
+                    <br>
+                    <a href="/membresias/registrarMembresias" class="btn btn-info">Registrar Membresias</a>
+                    <div class="table-responsive">
+                    <table  id="tablax" class="table">
+                        <thead class="thead-dark">
+                            <th class="text-center">ID</th>
+                            <th class="text-center">NOMBRE</th>
+                            <th class="text-center">PRECIO</th>
+                            <th class="text-center">DURACION</th>
+                            <th class="text-center">CANTIDAD DE LIBROS</th>
+                            <th class="text-center">ESTATUS</th>
+                            <th class="text-center">VER</th>
+                            <th class="text-center">ELIMINAR</th>
+                        </thead>
+                        {% for catalogo in catal %}
+                        <tr>
+                            <td class="text-center">{{membresias.idMembresias}}</td>
+                            <td class="text-center">{{membresias.nombre}}</td>
+                            <td class="text-center">{{membresias.precio}}</td>
+                            <td class="text-center">{{membresias.duracion}}</td>
+                            <td class="text-center">{{membresias.cantidadLibros}}</td>
+                            <td class="text-center">{{catalogo.estatus}}</td>
+                            <td class="text-center">
+                                <a href="/membresias/ver/{{membresiasidMembresias}}">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a href="/membresias/eliminarMembresias/{{membresias.idMembresias}}">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    </div>
+                    <br>
+                        {% if get_flashed_messages() %}
+                            <div id="menssageAlert" class="alert alert-success alert-dismissible">
+                                {% for message in get_flashed_messages() %}
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>{{message}}</strong>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                </div>
+             </div>
+            {% endblock %}
+        <p class="text text-center">Este es el pie de pagina</p>
+
+    </body>
+</html>

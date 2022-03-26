@@ -7,7 +7,7 @@ from flask_login import current_user,login_user,logout_user,login_manager,login_
 from model.DAO import db, CatalogoMultas, Categorias
 app=Flask(__name__, template_folder='../view', static_folder='../static')
 Bootstrap(app)
-#---------------------Conexion ESPINOZA-----------------------------------------
+#----------------------------Conexion -----------------------------------------
 app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:root@localhost/erpbiblioteca'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.secret_key='cl4v3'
@@ -122,4 +122,63 @@ if __name__ == '__main__':
     db.init_app(app)
     app.run(debug=True)
 
+#________________________________________________________________________________
+#--------------------------------Membresias-------------------------------------
+#________________________________________________________________________________
+@app.route ('/Membresias/consultarMembresias')
+#@login_required
+def consultarMembresias():
+    membresias = Membresias()
+    return render_template('/membresias/membresias.html', edit=membresias.consultarMembresias())
+
+@app.route ('/membresias/registrarMembresias')
+#@login_required
+def registrarMembresias():
+    return render_template('/membresias/registrarMembresias.html')
+
+@app.route ('/membresias/guardandoMembresias', methods=['post'])
+#@login_required
+def guardandoMembresias():
+    membresias = Membresias()
+    membresias.nombre = request.form['nombre']
+    membresias.precio = request.form['precio']
+    membresias.duracion = request.form['duracion']
+    membresias.cantidadLibros = request.form['cantidadLibros']
+    membresias.estatus = request.form['estatus']
+    membresias.insertar()
+    flash ('Membresia registrada exitosamente')
+    return redirect (url_for('registrarMembresia'))
+
+
+@app.route('/Membresias/ver/<int:id>')
+#@login_required
+def mostrarMembresias(id):
+    membresias = Membresias()
+    return render_template('/membresias/editarMem.html', mem=membresias.consultaIndividual(id))
+
+@app.route('/Membresias/editandoMembresias',methods=['post'])
+#@login_required
+def editandoMembresias():
+    try:
+        membresias = Membresias()
+        membresias.nombre = request.form['nombre']
+        membresias.precio = request.form['precio']
+        membresias.duracion = request.form['duracion']
+        membresias.cantidadLibros = request.form['cantidadLibros']
+        membresias.fechaInicio = request.form['fechaInicio']
+        membresias.fechaFin = request.form['fechaFin']
+        membresias.actualizar()
+        flash('Datos actualizados con exito')
+    except:
+        flash('!Error al actualizar!')
+    return render_template('/membresias/editarMem.html', catal=catalogo)
+
+
+@app.route('/membresias/eliminarMembresias/<int:id>')
+#@login_required
+def eliminarMembresias(id):
+    membresias = Membresias()
+    membresias.eliminar(id)
+    flash('Registro de la Membresia eliminado con exito')
+    return redirect(url_for('consultarMembresias'))
     
