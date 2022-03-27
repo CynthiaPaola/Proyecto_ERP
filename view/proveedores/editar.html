@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+      <title>{% block title %}Libreria{% endblock %}</title>
+    </head>
+
+    <body>
+        {% include "common/navigation_bar.html" %}
+            {% block content %}
+                <div class="container-fluid text-center">
+                    <div class="row">
+                        <div class="col-sm-4" style="background-color: none;"></div>
+                        <div class="well col-sm-4">
+                        <h1 class="text-center">REGISTRO DE PROVEEDORES</h1>
+                        <form action="/proveedores/editandoProveedores" method="post" enctype="multipart/form-data">
+                            <div class="form-group text-center">
+                                <label>ID PROVEEDORES</label>
+                                <input type="number" name="idProveedores" value="{{prov.idProveedores}}" class="form-control text-center" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>NOMBRE</label>
+                                <input type="text" name="nombre" value="{{prov.nombre}}"  class="form-control text-center" required>
+                            </div>
+                            <div class="form-group">
+                                <label>DIRECCION</label>
+                                <input type="text" name="direccion" value="{{prov.direccion}}"  class="form-control text-center" required>
+                            </div>
+                            <div class="form-group">
+                                <label>TELEFONO</label>
+                                <input type="number" name="telefono" value="{{prov.telefono}}"  class="form-control text-center" required>
+                            </div>
+                            <div class="form-group">
+                                <label>CORREO</label>
+                                <input type="text" name="correo" value="{{prov.correo}}"  class="form-control text-center" required>
+                            </div>
+                            <div class="form-group">
+                                <label>PAIS</label>
+                                <input type="text" name="pais" value="{{prov.pais}}"  class="form-control text-center" required>
+                            </div>
+
+                            <div  class="mb-3">
+                                <label class="form-label">Estatus: </label>
+                                <label class="form-check-label" for="radio1">
+                                    <input type="radio" id="radio1" name="estatus" value="1"checked>Activo
+                                </label>
+                                <label class="form-check-label" for="radio2">
+                                    <input type="radio"  id="radio2" name="estatus" value="0">Inactivo
+                                </label>
+                            </div>
+
+                            <br>
+
+                        <nav id="bloqueBotones">
+                            <button type="submit" class="btn btn-success">Actualizar</button>
+                            <a href="/proveedores/consultarProveedores" class="btn btn-warning">Regresar</a>
+                        </nav>
+                        </form>
+                        <br>
+                            {% if get_flashed_messages() %}
+                                <div id="menssageAlert" class="alert alert-success alert-dismissible">
+                            {% for message in get_flashed_messages() %}
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>{{message}}</strong>
+                            {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        <p class="text text-center">Este es el pie de pagina</p>
+    </body>
+</html>

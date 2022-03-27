@@ -14,7 +14,7 @@
                 <div class="well">
                     <h1 class="text-center">ESTADOS REGISTRADOS</h1>
                     <br>
-                    <a href="/estados/registrarEstados" class="btn btn-info">Registrar Estados</a>
+                    <a href="/categorias/registrarCategorias" class="btn btn-info">Registrar Estados</a>
                     <div class="table-responsive">
                     <table  id="tablax" class="table">
                         <thead class="thead-dark">
@@ -24,23 +24,27 @@
                             <th class="text-center">VER</th>
                             <th class="text-center">ELIMINAR</th>
                         </thead>
-                        {% for catogorias in catog %}
+                        {% for categorias in cate %}
                         <tr>
-                            <td class="text-center">{{catogorias.idCategorias}}</td>
-                            <td class="text-center">{{catogorias.nombre}}</td>
-                            <td class="text-center">{{catogorias.estatus}}</td>
+                            {% if cate.estatus=='1' %}
+                        <a href="#" class="category_item" category="{{cat.nombre}}">{{cat.nombre}}</a>
+                        {% endif %}
+                            <td class="text-center">{{categorias.idCategorias}}</td>
+                            <td class="text-center">{{categorias.nombre}}</td>
+                            <td class="text-center">{{categorias.estatus}}</td>
                             <td class="text-center">
-                                <a href="/categorias/ver/{{catogorias.idCategorias}}">
+                                <a href="/categorias/ver/{{categorias.idCategorias}}">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                             </td>
                             <td class="text-center">
-                                <a href="/categorias/eliminarCategorias/{{catogorias.idCategorias}}">
+                                <a href="/categorias/eliminarCategoria/{{categorias.idCategorias}}">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>
                         </tr>
                         {% endfor %}
+
                     </table>
                     </div>
                     <br>
