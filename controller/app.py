@@ -8,7 +8,7 @@ from model.DAO import db, CatalogoMultas, Categorias, Proveedores,Editorial,Memb
 app=Flask(__name__, template_folder='../view', static_folder='../static')
 Bootstrap(app)
 #---------------------Conexion ESPINOZA-----------------------------------------
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://user_erpbiblioteca:toni@localhost/erpbiblioteca'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:josuebvb11@localhost/erpbiblioteca'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.secret_key='cl4v3'
 login_manager=LoginManager()
