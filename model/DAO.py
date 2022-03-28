@@ -7,6 +7,43 @@ db = SQLAlchemy()
 #-----------------------------------------------------------------------------------------------------------------------
 #------------------------------------------------------catalogoMultas---------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------
+class Login(UserMixin,db.Model):
+    _tablename_ = 'login'
+    id= Column(Integer, primary_key=True)
+    login = Column(Integer, primary_key=True)
+    password_hash = Column(String(20), nullable=False)
+
+    def consultaGeneral(self):
+        return self.query.all()
+
+    def consultaIndividual(self, id):
+        return self.query.get(id)
+
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self, id):
+        obj = self.consultaIndividual(id)
+        db.session.delete(obj)
+        db.session.commit()
+
+    def validar(self, correo, contrasena):
+        login = None
+        login = self.query.filter(Login.login == correo, Login. password_hash == contrasena,).first()
+        return login
+
+    def is_authenticated(self):
+        return True
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------catalogoMultas---------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
 
 class CatalogoMultas(db.Model):
     __tablename__ = 'catalogomultas'
@@ -34,6 +71,11 @@ class CatalogoMultas(db.Model):
         obj = self.consultaIndividual(id)
         db.session.delete(obj)
         db.session.commit()
+
+    def eliminacionLogica(self, id):
+        obj = self.consultaIndividuall(id)
+        db.estatus = '0'
+        db.actualizar()
 #-----------------------------------------------------------------------------------------------------------------------
 #------------------------------------------------------Categorias---------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------
@@ -149,7 +191,7 @@ class Membresias(db.Model):
     nombre = Column(String(45), nullable=False)
     precio = Column(Float, nullable=False)
     duracion = Column(Integer, nullable=False)
-    cantidadLibros = Column(Integer, nullable=False)
+    cantidadlibros = Column(Integer, nullable=False)
     estatus = Column(Integer, nullable=False)
 
     def consultaGeneral(self):

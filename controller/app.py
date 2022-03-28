@@ -4,19 +4,21 @@ from urllib import request
 from flask import Flask,render_template,request,flash,redirect,url_for,abort
 from flask_bootstrap import Bootstrap
 from flask_login import current_user,login_user,logout_user,login_manager,login_required,LoginManager
-from model.DAO import db, CatalogoMultas, Categorias, Proveedores,Editorial,Membresias
+from model.DAO import db, CatalogoMultas, Categorias, Proveedores,Editorial,Membresias,Login
 app=Flask(__name__, template_folder='../view', static_folder='../static')
 Bootstrap(app)
-#---------------------Conexion ESPINOZA-----------------------------------------
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:josuebvb11@localhost/erpbiblioteca'
+#---------------------Conexion -----------------------------------------
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:Cadete117@@localhost/erpbiblioteca'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.secret_key='cl4v3'
 login_manager=LoginManager()
 login_manager.init_app(app)
 login_manager.login_view='login'
+
 #________________________________________________________________________________
-#--------------------------------COMUNES-----------------------------------------
+#--------------------------------login1-----------------------------------------
 #________________________________________________________________________________
+
 @login_manager.user_loader
 def load_user(id):
     return CatalogoMultas.query.get(int(id))
@@ -25,8 +27,23 @@ def load_user(id):
 def login():
     return render_template('common/login.html')
 
+@app.route('/login/iniciandoSesion', methods=['post'])
+def iniciandoSesion():
+    correo = request.form['correo']
+    contrasena = request.form['contrasena']
+    logi = Login()
+    logi = logi.validar(correo, contrasena)
+    if logi!= None:
+        login_user(logi)
+        return render_template('common/index.html')
+    else:
+        return render_template('common/login.html')
+
+#________________________________________________________________________________
+#--------------------------------COMUNES-----------------------------------------
+#________________________________________________________________________________
 @app.route('/index')
-#@login_required
+@login_required
 def inicio():
     return render_template('common/index.html')
 #________________________________________________________________________________
@@ -77,12 +94,20 @@ def editandoCatalogoMultas():
         flash('!Error al actualizar!')
     return render_template('/catalogoMultas/editar.html', catal=catalogo)
 
-@app.route('/catalogoMultas/eliminarCatalogoMultas/<int:id>')
+#@app.route('/catalogoMultas/eliminarCatalogoMultas/<int:id>')
 #@login_required
+#def eliminarCatalogoMultas(id):
+#    catalogo = CatalogoMultas()
+#    catalogo.eliminar(id)
+#    flash('Registro del Catalogo de Multas eliminado con exito')
+ #   return redirect(url_for('consultarCatalogoMultas'))
+
+@app.route('/catalogoMultas/eliminarCatalogoMultas/<int:id>')
+# @login_required
 def eliminarCatalogoMultas(id):
     catalogo = CatalogoMultas()
     catalogo.eliminar(id)
-    flash('Registro del Catalogo de Multas eliminado con exito')
+    flash('eliminacion')
     return redirect(url_for('consultarCatalogoMultas'))
 
 #________________________________________________________________________________
@@ -275,7 +300,7 @@ def consultarMembresias():
 @app.route('/membresias/registrarMembresias')
 # @login_required
 def registrarMembresias():
-    return render_template('/membresias/registrarMembresias.html')
+    return render_template('/membresias/nuevo.html')
 
 
 @app.route('/membresias/guardandoMembresias', methods=['post'])
@@ -285,7 +310,7 @@ def guardandoMembresias():
     membresias.nombre = request.form['nombre']
     membresias.precio = request.form['precio']
     membresias.duracion = request.form['duracion']
-    membresias.cantidadLibros = request.form['cantidadLibros']
+    membresias.cantidadlibros=request.form['cantidadlibros']
     membresias.estatus = request.form['estatus']
     membresias.insertar()
     flash('Membresia registrada exitosamente')
@@ -307,7 +332,7 @@ def editandoMembresias():
         membresias.nombre = request.form['nombre']
         membresias.precio = request.form['precio']
         membresias.duracion = request.form['duracion']
-        membresias.cantidadLibros = request.form['cantidadLibros']
+        membresias.cantidadlibros = request.form['cantidadlibros']
         membresias.fechaInicio = request.form['fechaInicio']
         membresias.fechaFin = request.form['fechaFin']
         membresias.actualizar()

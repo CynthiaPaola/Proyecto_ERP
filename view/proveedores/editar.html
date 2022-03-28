@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-sm-4" style="background-color: none;"></div>
                         <div class="well col-sm-4">
-                        <h1 class="text-center">REGISTROS DE PROVEEDORES</h1>
+                        <h1 class="text-center">REGISTRO DE PROVEEDORES</h1>
                         <form action="/proveedores/editandoProveedores" method="post" enctype="multipart/form-data">
                             <div class="form-group text-center">
                                 <label>ID PROVEEDORES</label>
@@ -39,7 +39,15 @@
                                 <input type="text" name="pais" value="{{prov.pais}}"  class="form-control text-center" required>
                             </div>
 
-
+                            <div  class="mb-3">
+                                <label class="form-label">Estatus: </label>
+                                <label class="form-check-label" for="radio1">
+                                    <input type="radio" id="radio1" name="estatus" value="1"checked>Activo
+                                </label>
+                                <label class="form-check-label" for="radio2">
+                                    <input type="radio"  id="radio2" name="estatus" value="0">Inactivo
+                                </label>
+                            </div>
 
                             <br>
 

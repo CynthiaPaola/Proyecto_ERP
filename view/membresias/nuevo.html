@@ -13,30 +13,25 @@
                     <div class="row">
                         <div class="col-sm-4" style="background-color: none;"></div>
                         <div class="well col-sm-4">
-                        <h1 class="text-center">Proveedores</h1>
-                        <form action="/proveedores/guardandoProveedores" method="post" enctype="multipart/form-data">
+                        <h1 class="text-center">Catalogo de Multas</h1>
+                        <form action="/membresias/guardandoMembresias" method="post" enctype="multipart/form-data">
 
                         <div  class="form-group">
                             <label for="estateName">Nombre</label>
-                            <input type="text" class="form-control" id="estateName"  placeholder="Nombre del proveedor a registrar" maxlength="80" required name="nombre">
+                            <input type="text" class="form-control" id="estateName"  placeholder="Nombre del estado a registrar" maxlength="80" required name="nombre">
                         </div>
-                            <div  class="form-group">
-                            <label for="estateName">Direccion</label>
-                            <input type="text" class="form-control" id="direccion"  placeholder="direccion del proveedor a registrar" maxlength="80" required name="direccion">
-                        </div>
-                            <div  class="form-group">
-                            <label for="estateName">Telefono</label>
-                            <input type="text" class="form-control" id="telefono"  placeholder="telefono del proveedor a registrar" maxlength="80" required name="telefono">
-                        </div>
-                            <div  class="form-group">
-                            <label for="estateName">Correo</label>
-                            <input type="text" class="form-control" id="correo"  placeholder="correo del proveedor a registrar" maxlength="80" required name="correo">
-                        </div>
-                            <div>
-                            <div  class="form-group">
-                            <label for="estateName">Pais</label>
-                            <input type="text" class="form-control" id="pais"  placeholder="pais del proveedor a registrar" maxlength="80" required name="pais">
-                        </div>
+                            <div class="form-group">
+                            <label for="siglasEst" class="form-label">precio</label>
+                            <input type="number" class="form-control" id="siglasEst"  placeholder="precio" maxlength="100" required name="precio">
+                            </div>
+                        <div class="form-group">
+                            <label for="siglasEst" class="form-label">duracion</label>
+                            <input type="number" class="form-control" id="siglasEs"  placeholder="duracion" maxlength="100" required name="duracion">
+                            </div>
+                        <div class="form-group">
+                            <label for="siglasEst" class="form-label">cantidad libros</label>
+                            <input type="number" class="form-control" id="siglasE"  placeholder="cantidadlibros" maxlength="100" required name="cantidadlibros">
+                            </div>
 
                         <div  class="mb-3">
                                 <label class="form-label">Estatus: </label>
@@ -49,7 +44,7 @@
                         </div>
                         <nav id="bloqueBotones">
                             <button type="submit" class="btn btn-success">Registrar</button>
-                            <a href="/proveedores/consultarProveedores" class="btn btn-warning">Regresar</a>
+                            <a href="/membresias/consultarmembresias" class="btn btn-warning">Regresar</a>
                         </nav>
 
                         </form>
@@ -69,3 +64,4 @@
         <p class="text text-center">Este es el pie de pagina</p>
     </body>
 </html>
+

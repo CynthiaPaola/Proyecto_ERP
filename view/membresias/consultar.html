@@ -12,7 +12,7 @@
             {% block content %}
              <div class="container-fluid">
                 <div class="well">
-                    <h1 class="text-center">CATALOGO MEMBRESIAS REGISTRADOS</h1>
+                    <h1 class="text-center"> MEMBRESIAS REGISTRADOS</h1>
                     <br>
                     <a href="/membresias/registrarMembresias" class="btn btn-info">Registrar Membresias</a>
                     <div class="table-responsive">
@@ -33,9 +33,9 @@
                             <td class="text-center">{{membresias.nombre}}</td>
                             <td class="text-center">{{membresias.precio}</td>
                             <td class="text-center">{{membresias.duracion}}</td>
-                            <td class="text-center">{{membresias.cantidadLibros}}</td>
+                            <td class="text-center">{{membresias.cantidadlibros}}</td>
                             <td class="text-center">{{membresias.estatus}}</td>
-
+                            <td class="text-center">
                                 <a href="/membresias/ver/{{membresias.idMembresias}}">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
