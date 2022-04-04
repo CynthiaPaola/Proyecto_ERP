@@ -212,3 +212,44 @@ class Membresias(db.Model):
         obj = self.consultaIndividual(id)
         db.session.delete(obj)
         db.session.commit()
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------Libros---------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+class Libros(db.Model):
+    _tablename_ = 'libros'
+    idLibros = Column(Integer, primary_key=True)
+    idCategorias=Column(Integer, ForeignKey('categorias.idCategorias'))
+    idEditorial=Column(Integer, ForeignKey('editorial.idEditorial'))
+    titulo = Column(String(45), nullable=False)
+    numEdicion = Column(Integer, nullable=False)
+    numPaginas = Column(Integer, nullable=False)
+    anioPublicacion= Column(Date, nullable=False)
+    precioVenta= Column(Float, nullable=False)
+    precioCompra= Column(Float, nullable=False)
+
+
+    def consultaGeneral(self):
+        return self.query.all()
+
+    def consultaIndividual(self, id):
+        return self.query.get(id)
+
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self, id):
+        obj = self.consultaIndividual(id)
+        db.session.delete(obj)
+        db.session.commit()
+
+    def eliminacionLogica(self, id):
+        obj = self.consultaIndividuall(id)
+        db.estatus = 'Inactiva'
+        db.editar()

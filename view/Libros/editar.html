@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+      <title>{% block title %}Libreria{% endblock %}</title>
+    </head>
+
+    <body>
+        {% include "common/navigation_bar.html" %}
+            {% block content %}
+                <div class="container-fluid text-center">
+                    <div class="row">
+                        <div class="col-sm-4" style="background-color: none;"></div>
+                        <div class="well col-sm-4">
+                        <h1 class="text-center">REGISTRO DE PROVEEDORES</h1>
+
+
+                        <form action="/libros/editandoLibros" method="post" enctype="multipart/form-data">
+
+                            <div  class="form-group">
+                            <label for="estateName">idLibros</label>
+                            <input type="text" class="form-control" id="idLibros" value="{{lib.idLibros}}" placeholder="libros" maxlength="80" required name="idLibros" readonly>
+                        </div>
+                            <div  class="form-group">
+
+
+                            <label for="estateName">Categoria</label>
+                            <select name='idCategorias'  class="form-control">
+                                {% for categorias in cat %}
+                                {% if categorias.idCategorias!=lib.idCategorias %}
+                                    <option value="{{categorias.idCategorias}}">{{categorias.nombre}}</option>
+                                    {% endif %}
+                                    {% if categorias.idCategorias==lib.idCategorias %}
+                                    <option value="{{categorias.idCategorias}}" selected>{{categorias.nombre}}</option>
+                                    {% endif %}
+
+                                {% endfor %}
+                            </select>
+                        </div>
+                            <div  class="form-group">
+
+
+                            <label for="estateName">Categoria</label>
+                            <select name='idEditorial'  class="form-control">
+                                {% for editorial in edit %}
+                                {% if editorial.idEditorial!=lib.idEditorial %}
+                                    <option value="{{editorial.idEditorial}}">{{editorial.nombre}}</option>
+                                    {% endif %}
+                                    {% if editorial.idEditorial==lib.idEditorial %}
+                                    <option value="{{editorial.idEditorial}}" selected>{{editorial.nombre}}</option>
+                                    {% endif %}
+
+                                {% endfor %}
+                            </select>
+                        </div>
+                            <div  class="form-group">
+                            <label for="estateName">Titulo</label>
+                            <input type="text" class="form-control" id="titulo" value="{{lib.titulo}}"  placeholder="titulo" maxlength="80" required name="titulo">
+                        </div>
+                            <div  class="form-group">
+                            <label for="estateName">numEdicion</label>
+                            <input type="text" class="form-control" id="numEdicion" value="{{lib.numEdicion}}" placeholder="numEdicion" maxlength="80" required name="numEdicion">
+                        </div>
+                            <div>
+                            <div  class="form-group">
+                            <label for="estateName">numPaginas</label>
+                            <input type="text" class="form-control" id="numPaginas" value="{{lib.numPaginas}}"  placeholder="numPaginas" maxlength="80" required name="numPaginas">
+                        </div>
+                                <div>
+                            <div  class="form-group">
+                            <label for="estateName">anioPublicacion</label>
+                            <input type="date" class="form-control" id="anioPublicacion" value="{{lib.anioPublicacion}}" placeholder="anioPublicacion" maxlength="80" required name="anioPublicacion">
+                        </div>
+                                    <div>
+                            <div  class="form-group">
+                            <label for="estateName">precioVenta</label>
+                            <input type="text" class="form-control" id="precioVenta" value="{{lib.precioVenta}}"  placeholder="precioVenta" maxlength="80" required name="precioVenta">
+                        </div>
+                                        <div>
+                            <div  class="form-group">
+                            <label for="estateName">precioCompra</label>
+                            <input type="text" class="form-control" id="precioCompra" value="{{lib.precioCompra}}" placeholder="precioCompra" maxlength="80" required name="precioCompra">
+                        </div>
+
+
+
+                            <br>
+
+                        <nav id="bloqueBotones">
+                            <button type="submit" class="btn btn-success">Actualizar</button>
+                            <a href="/libros/consultarLibros" class="btn btn-warning">Regresar</a>
+                        </nav>
+                        </form>
+                        <br>
+                            {% if get_flashed_messages() %}
+                                <div id="menssageAlert" class="alert alert-success alert-dismissible">
+                            {% for message in get_flashed_messages() %}
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>{{message}}</strong>
+                            {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        <p class="text text-center">Este es el pie de pagina</p>
+
+    </body>
+</html>

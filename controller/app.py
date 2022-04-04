@@ -4,11 +4,11 @@ from urllib import request
 from flask import Flask,render_template,request,flash,redirect,url_for,abort
 from flask_bootstrap import Bootstrap
 from flask_login import current_user,login_user,logout_user,login_manager,login_required,LoginManager
-from model.DAO import db, CatalogoMultas, Categorias, Proveedores,Editorial,Membresias,Login
+from model.DAO import db, CatalogoMultas, Categorias, Proveedores,Editorial,Membresias,Login, Libros
 app=Flask(__name__, template_folder='../view', static_folder='../static')
 Bootstrap(app)
 #---------------------Conexion -----------------------------------------
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://user_erpbiblioteca:Alejandro@localhost/erpbiblioteca'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://user_BibliotecaERP:Bibliotecario@localhost/erpbiblioteca'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.secret_key='cl4v3'
 login_manager=LoginManager()
@@ -348,6 +348,76 @@ def eliminarMembresias(id):
     return redirect(url_for('consultarMembresias'))
 
 
+#____________________________
+#--------------------------------Libros----------------------------------
+#____________________________
+
+@app.route('/libros/consultarLibros')
+#@login_required
+def consultarLibros():
+    libros=Libros()
+    categorias=Categorias()
+    editorial=Editorial()
+    return render_template('/libros/consultar.html',lib=libros.consultaGeneral(),cat=categorias.consultaGeneral(),edit=editorial.consultaGeneral())
+
+@app.route('/libros/registrarLibros')
+# @login_required
+def registrarLibros():
+    categorias=Categorias()
+    editorial=Editorial()
+    return render_template('/libros/nuevo.html', cat=categorias.consultaGeneral(),edit=editorial.consultaGeneral())
+
+
+@app.route('/libros/guardandoLibros', methods=['post'])
+# @login_required
+def guardandoLibros():
+    libros = Libros()
+    libros.idCategorias = request.form['idCategorias']
+    libros.idEditorial = request.form['idEditorial']
+    libros.titulo = request.form['titulo']
+    libros.numEdicion=request.form['numEdicion']
+    libros.numPaginas = request.form['numPaginas']
+    libros.anioPublicacion = request.form['anioPublicacion']
+    libros.precioVenta = request.form['precioVenta']
+    libros.precioCompra = request.form['precioCompra']
+    libros.insertar()
+    flash('libro registrado exitosamente')
+    return redirect(url_for('registrarMembresias'))
+
+
+
+@app.route('/libros/ver/<int:id>')
+#@login_required
+def editarLibros(id):
+    libros = Libros()
+    categorias = Categorias()
+    editorial = Editorial()
+    return render_template('/libros/editar.html', lib=libros.consultaIndividual(id),cat=categorias.consultaGeneral(),edit=editorial.consultaGeneral())
+
+
+@app.route('/libros/editandoLibros', methods=['post'])
+#@login_required
+def editandoLibros():
+    try:
+        libros = Libros()
+        libros.idLibros=request.form['idLibros']
+        libros.idCategorias = request.form['idCategorias']
+        libros.idEditorial = request.form['idEditorial']
+        libros.titulo = request.form['titulo']
+        libros.numEdicion = request.form['numEdicion']
+        libros.numPaginas = request.form['numPaginas']
+        libros.anioPublicacion = request.form['anioPublicacion']
+        libros.precioVenta = request.form['precioVenta']
+        libros.precioCompra = request.form['precioCompra']
+        libros.actualizar()
+        flash('Datos actualizados con exito')
+    except:
+        flash('!Error al actualizar!')
+    return render_template('/libros/editar.html', lib=libros)
+
+
 if __name__ == '__main__':
     db.init_app(app)
     app.run(debug=True)
+
+
