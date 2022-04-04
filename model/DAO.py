@@ -253,3 +253,39 @@ class Libros(db.Model):
         obj = self.consultaIndividuall(id)
         db.estatus = 'Inactiva'
         db.editar()
+
+#-----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------Pedidos---------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+class Pedidos(db.Model):
+    __tablename__ = 'pedidos'
+    idPedidos = Column(Integer, primary_key=True)
+    fecha = Column(Date, nullable=False)
+    cantidad = Column(Integer, nullable=False)
+    totalPagar = Column(Float, nullable=False)
+    estatus = Column(Integer, nullable=False)
+
+
+    def consultaGeneral(self):
+        return self.query.all()
+
+    def consultaIndividual(self, id):
+        return self.query.get(id)
+
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self, id):
+        obj = self.consultaIndividual(id)
+        db.session.delete(obj)
+        db.session.commit()
+
+    def eliminacionLogica(self, id):
+        obj = self.consultaIndividuall(id)
+        db.estatus = 'Inactiva'
+        db.editar()
