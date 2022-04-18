@@ -4,11 +4,11 @@ from urllib import request
 from flask import Flask,render_template,request,flash,redirect,url_for,abort
 from flask_bootstrap import Bootstrap
 from flask_login import current_user,login_user,logout_user,login_manager,login_required,LoginManager
-from model.DAO import db, CatalogoMultas, Categorias, Proveedores,Editorial,Membresias,Login, Libros
+from model.DAO import db, CatalogoMultas, Categorias, Proveedores,Editorial,Membresias,Login,Libros,Autor,LibrosAutor,Prestamo,MultasPrestamo
 app=Flask(__name__, template_folder='../view', static_folder='../static')
 Bootstrap(app)
 #---------------------Conexion -----------------------------------------
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://user_BibliotecaERP:Bibliotecario@localhost/erpbiblioteca'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://user_erpbiblioteca:toni@localhost/erpbiblioteca'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.secret_key='cl4v3'
 login_manager=LoginManager()
@@ -43,7 +43,7 @@ def iniciandoSesion():
 #--------------------------------COMUNES-----------------------------------------
 #________________________________________________________________________________
 @app.route('/index')
-@login_required
+#@login_required
 def inicio():
     return render_template('common/index.html')
 #________________________________________________________________________________
@@ -285,72 +285,18 @@ def eliminarEditorial(id):
     return redirect(url_for('consultarEditorial'))
 
 
-# ________________________________________________________________________________
-# --------------------------------Membresias-------------------------------------
-# ________________________________________________________________________________
 
-@app.route('/membresias/consultarMembresias')
-#@login_required
-def consultarMembresias():
-    membresias=Membresias()
-    return render_template('/membresias/consultar.html', memb=membresias.consultaGeneral())
+#________________________________________________________________________________
+#--------------------------------Multas prestamo----------------------------------
+#________________________________________________________________________________
 
 
 
-@app.route('/membresias/registrarMembresias')
-# @login_required
-def registrarMembresias():
-    return render_template('/membresias/nuevo.html')
 
 
-@app.route('/membresias/guardandoMembresias', methods=['post'])
-# @login_required
-def guardandoMembresias():
-    membresias = Membresias()
-    membresias.nombre = request.form['nombre']
-    membresias.precio = request.form['precio']
-    membresias.duracion = request.form['duracion']
-    membresias.cantidadlibros=request.form['cantidadlibros']
-    membresias.estatus = request.form['estatus']
-    membresias.insertar()
-    flash('Membresia registrada exitosamente')
-    return redirect(url_for('registrarMembresias'))
-
-
-@app.route('/membresias/ver/<int:id>')
-#@login_required
-def editarMembresias(id):
-    membresias = Membresias()
-    return render_template('/membresias/editarMem.html', mem=membresias.consultaIndividual(id))
-
-
-@app.route('/membresias/editandoMembresias', methods=['post'])
-#@login_required
-def editandoMembresias():
-    try:
-        membresias = Membresias()
-        membresias.nombre = request.form['nombre']
-        membresias.precio = request.form['precio']
-        membresias.duracion = request.form['duracion']
-        membresias.cantidadlibros = request.form['cantidadlibros']
-        membresias.fechaInicio = request.form['fechaInicio']
-        membresias.fechaFin = request.form['fechaFin']
-        membresias.actualizar()
-        flash('Datos actualizados con exito')
-    except:
-        flash('!Error al actualizar!')
-    return render_template('/membresias/editarMem.html', mem=membresias)
-
-def eliminarMembresias(id):
-    membresias = Membresias()
-    membresias.eliminar(id)
-    flash('Registro de la Membresia eliminado con exito')
-    return redirect(url_for('consultarMembresias'))
-
-
-#____________________________
+#________________________________________________________________________________
 #--------------------------------Libros----------------------------------
-#____________________________
+#________________________________________________________________________________
 
 @app.route('/libros/consultarLibros')
 #@login_required
@@ -416,8 +362,214 @@ def editandoLibros():
     return render_template('/libros/editar.html', lib=libros)
 
 
+
+# ________________________________________________________________________________
+# --------------------------------LIBROS autor-------------------------------------
+# ________________________________________________________________________________
+
+
+
+@app.route('/librosautor/consultarLibrosAutor')
+#@login_required
+def consultarLibrosAutor():
+    librosautor=LibrosAutor()
+    libros=Libros()
+    autor=Autor()
+    return render_template('/librosautor/consultar.html',libr=librosautor.consultaGeneral(),lib=libros.consultaGeneral(),aut=autor.consultaGeneral())
+
+@app.route('/librosautor/registrarLibrosAutor')
+# @login_required
+def registrarLibrosAutor():
+    libros = Libros()
+    autor = Autor()
+    return render_template('/librosautor/nuevo.html', lib=libros.consultaGeneral(),aut=autor.consultaGeneral())
+
+
+@app.route('/librosautor/guardandoLibrosAutor', methods=['post'])
+# @login_required
+def guardandoLibrosAutor():
+    librosautor = LibrosAutor()
+    librosautor.idLibros= request.form['idLibros']
+    librosautor.idAutor = request.form['idAutor']
+    librosautor.insertar()
+    flash('libro registrado exitosamente')
+    return redirect(url_for('registrarLibrosAutor'))
+
+
+
+
+
+
+@app.route('/librosautor/ver/<int:id>')
+#@login_required
+def editarLibrosAutor(id):
+    librosautor = LibrosAutor()
+    libros = Libros()
+    autor = Autor()
+    return render_template('/librosautor/editar.html', libr=librosautor.consultaIndividual(id),lib=libros.consultaGeneral(),aut=autor.consultaGeneral())
+
+
+@app.route('/librosautor/editandoLibrosAutor', methods=['post'])
+#@login_required
+def editandoLibrosAutor():
+    try:
+        librosautor = LibrosAutor()
+        librosautor.idLibrosAutor = request.form['idLibrosAutor']
+        librosautor.idLibros = request.form['idLibros']
+        librosautor.idAutor = request.form['idAutor']
+        librosautor.actualizar()
+        flash('Datos actualizados con exito')
+    except:
+        flash('!Error al actualizar!')
+    return render_template('/librosautor/editar.html', libr=librosautor)
+
+@app.route('/librosautor/eliminarLibrosAutor/<int:id>')
+#@login_required
+def eliminarLibrosAutor(id):
+    librosautor = LibrosAutor()
+    librosautor.eliminar(id)
+    flash('Registro del Catalogo de Multas eliminado con exito')
+    return redirect(url_for('consultarLibrosAutor'))
+
+
+# ________________________________________________________________________________
+# -------------------------------- autor-------------------------------------
+# ________________________________________________________________________________
+
+@app.route('/libros/consultarLibros')
+#@login_required
+def consultarAutor():
+    autor=Autor()
+    return render_template('/libros/consultar.html',aut=autor.consultaGeneral())
+
+
+
+# ________________________________________________________________________________
+# --------------------------------MULTAS PRESTAMO-------------------------------------
+# ________________________________________________________________________________
+
+
+
+@app.route('/multasprestamo/consultarMultasPrestamo')
+#@login_required
+def consultarMultasPrestamo():
+    multasprestamo=MultasPrestamo()
+    catalogo=CatalogoMultas()
+    prestamo=Prestamo()
+    return render_template('/multasprestamo/consultar.html',mult=multasprestamo.consultaGeneral(),cat=catalogo.consultaGeneral(),pre=prestamo.consultaGeneral())
+
+@app.route('/multasprestamo/registrarMultasPrestamo')
+# @login_required
+def registrarMultasPrestamo():
+    catalogo = CatalogoMultas()
+    prestamo = Prestamo()
+    return render_template('/multasprestamo/nuevo.html',cat=catalogo.consultaGeneral(),pre=prestamo.consultaGeneral())
+
+
+@app.route('/multasprestamo/guardandoMultasPrestamo', methods=['post'])
+# @login_required
+def guardandoMultasPrestamo():
+    multasprestamo=MultasPrestamo()
+    multasprestamo.idCatalogoMultas=request.form['idCatalogoMultas']
+    multasprestamo.idPrestamo = request.form['idPrestamo']
+    multasprestamo.cantPagar = request.form['cantPagar']
+    multasprestamo.fecha = request.form['fecha']
+    multasprestamo.insertar()
+    flash('multa registrado exitosamente')
+    return redirect(url_for('registrarMultasPrestamo'))
+
+
+
+
+@app.route('/multasprestamo/ver/<int:id>')
+#@login_required
+def editarMultasPrestamo(id):
+    multasprestamo = MultasPrestamo()
+    catalogo = CatalogoMultas()
+    prestamo = Prestamo()
+    return render_template('/multasprestamo/editar.html', mult=multasprestamo.consultaIndividual(id),cat=catalogo.consultaGeneral(), pre=prestamo.consultaGeneral())
+
+
+
+@app.route('/multasprestamo/editandoMultasPrestamo', methods=['post'])
+#@login_required
+def editandoMultasPrestamo():
+    try:
+        multasprestamo = MultasPrestamo()
+        multasprestamo.idMultasPrestamo = request.form['idMultasPrestamo']
+        multasprestamo.idCatalogoMultas = request.form['idCatalogoMultas']
+        multasprestamo.idPrestamo = request.form['idPrestamo']
+        multasprestamo.cantPagar = request.form['cantPagar']
+        multasprestamo.fecha = request.form['fecha']
+        multasprestamo.actualizar()
+        flash('Datos actualizados con exito')
+    except:
+        flash('!Error al actualizar!')
+    return render_template('/multasprestamo/editar.html', mult=multasprestamo)
+
+# ________________________________________________________________________________
+# --------------------------------Membresias-------------------------------------
+# ________________________________________________________________________________
+
+@app.route('/membresias/consultarMembresias')
+#@login_required
+def consultarMembresias():
+    membresias=Membresias()
+    return render_template('/membresias/consultar.html', memb=membresias.consultaGeneral())
+
+
+
+@app.route('/membresias/registrarMembresias')
+# @login_required
+def registrarMembresias():
+    return render_template('/membresias/nuevo.html')
+
+
+@app.route('/membresias/guardandoMembresias', methods=['post'])
+# @login_required
+def guardandoMembresias():
+    membresias = Membresias()
+    membresias.nombre = request.form['nombre']
+    membresias.precio = request.form['precio']
+    membresias.duracion = request.form['duracion']
+    membresias.cantidadlibros=request.form['cantidadlibros']
+    membresias.estatus = request.form['estatus']
+    membresias.insertar()
+    flash('Membresia registrada exitosamente')
+    return redirect(url_for('registrarMembresias'))
+
+
+@app.route('/membresias/ver/<int:id>')
+#@login_required
+def editarMembresias(id):
+    membresias = Membresias()
+    return render_template('/membresias/editarMem.html', mem=membresias.consultaIndividual(id))
+
+
+@app.route('/membresias/editandoMembresias', methods=['post'])
+#@login_required
+def editandoMembresias():
+    try:
+        membresias = Membresias()
+        membresias.nombre = request.form['nombre']
+        membresias.precio = request.form['precio']
+        membresias.duracion = request.form['duracion']
+        membresias.cantidadlibros = request.form['cantidadlibros']
+        membresias.fechaInicio = request.form['fechaInicio']
+        membresias.fechaFin = request.form['fechaFin']
+        membresias.actualizar()
+        flash('Datos actualizados con exito')
+    except:
+        flash('!Error al actualizar!')
+    return render_template('/membresias/editarMem.html', mem=membresias)
+
+def eliminarMembresias(id):
+    membresias = Membresias()
+    membresias.eliminar(id)
+    flash('Registro de la Membresia eliminado con exito')
+    return redirect(url_for('consultarMembresias'))
+
+
 if __name__ == '__main__':
     db.init_app(app)
     app.run(debug=True)
-
-

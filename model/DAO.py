@@ -181,44 +181,12 @@ class Editorial(db.Model):
         db.editar()
 
 
-#-----------------------------------------------------------------------------------------------------------------------
-#------------------------------------------------------Membresias---------------------------------------------------
-#-----------------------------------------------------------------------------------------------------------------------
-
-class Membresias(db.Model):
-    __tablename__ = 'membresias'
-    idMembresias = Column(Integer, primary_key=True)
-    nombre = Column(String(45), nullable=False)
-    precio = Column(Float, nullable=False)
-    duracion = Column(Integer, nullable=False)
-    cantidadlibros = Column(Integer, nullable=False)
-    estatus = Column(Integer, nullable=False)
-
-    def consultaGeneral(self):
-        return self.query.all()
-
-    def consultaIndividual(self, id):
-        return self.query.get(id)
-
-    def insertar(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def actualizar(self):
-        db.session.merge(self)
-        db.session.commit()
-
-    def eliminar(self, id):
-        obj = self.consultaIndividual(id)
-        db.session.delete(obj)
-        db.session.commit()
-
 
 #-----------------------------------------------------------------------------------------------------------------------
 #------------------------------------------------------Libros---------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------
 class Libros(db.Model):
-    _tablename_ = 'libros'
+    __tablename__ = 'libros'
     idLibros = Column(Integer, primary_key=True)
     idCategorias=Column(Integer, ForeignKey('categorias.idCategorias'))
     idEditorial=Column(Integer, ForeignKey('editorial.idEditorial'))
@@ -253,3 +221,200 @@ class Libros(db.Model):
         obj = self.consultaIndividuall(id)
         db.estatus = 'Inactiva'
         db.editar()
+
+#-----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------Libros Autor---------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+
+class LibrosAutor(db.Model):
+    __tablename__ = 'librosautor'
+    idLibrosAutor = Column(Integer, primary_key=True)
+    idLibros = Column(Integer, ForeignKey('libros.idLibros'))
+    idAutor = Column(Integer, ForeignKey('autor.idAutor'))
+
+    def consultaGeneral(self):
+        return self.query.all()
+
+    def consultaIndividual(self, id):
+        return self.query.get(id)
+
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self, id):
+        obj = self.consultaIndividual(id)
+        db.session.delete(obj)
+        db.session.commit()
+
+    def eliminacionLogica(self, id):
+        obj = self.consultaIndividuall(id)
+        db.estatus = 'Inactiva'
+        db.editar()
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------Autor solo el dao---------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+
+
+class Autor(db.Model):
+    __tablename__ = 'autor'
+    idAutor = Column(Integer, primary_key=True)
+    nombre = Column(String(45), nullable=False)
+    pais = Column(String(45), nullable=False)
+    ciudad = Column(String(45), nullable=False)
+    anioNacimiento = Column(Date, nullable=False)
+    estudios = Column(String(45), nullable=False)
+
+
+
+    def consultaGeneral(self):
+        return self.query.all()
+
+    def consultaIndividual(self, id):
+        return self.query.get(id)
+
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self, id):
+        obj = self.consultaIndividual(id)
+        db.session.delete(obj)
+        db.session.commit()
+
+    def eliminacionLogica(self, id):
+        obj = self.consultaIndividuall(id)
+        db.estatus = 'Inactiva'
+        db.editar()
+
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------Prestamo solo el dao---------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+class Prestamo(db.Model):
+    __tablename__ = 'prestamo'
+    idPrestamo = Column(Integer, primary_key=True)
+    idUsuarios=Column(Integer, ForeignKey('usuarios.idUsuarios'))
+    idBibliotecario=Column(Integer, ForeignKey('bibliotecario.idBibliotecario'))
+    fechaprestamo = Column(Date, nullable=False)
+    fechadevolucion = Column(Date, nullable=False)
+    estatus = Column(Integer, nullable=False)
+
+
+
+    def consultaGeneral(self):
+        return self.query.all()
+
+    def consultaIndividual(self, id):
+        return self.query.get(id)
+
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self, id):
+        obj = self.consultaIndividual(id)
+        db.session.delete(obj)
+        db.session.commit()
+
+    def eliminacionLogica(self, id):
+        obj = self.consultaIndividuall(id)
+        db.estatus = 'Inactiva'
+        db.editar()
+
+
+
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------Multas Prestamo---------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+class MultasPrestamo(db.Model):
+    __tablename__ = 'multasprestamo'
+    idMultasPrestamo = Column(Integer, primary_key=True)
+    idCatalogoMultas=Column(Integer, ForeignKey('catalogo.idCatalogoMultas'))
+    idPrestamo=Column(Integer, ForeignKey('prestamo.idPrestamo'))
+    cantPagar= Column(Float, nullable=False)
+    fecha = Column(Date, nullable=False)
+
+
+    def consultaGeneral(self):
+        return self.query.all()
+
+    def consultaIndividual(self, id):
+        return self.query.get(id)
+
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self, id):
+        obj = self.consultaIndividual(id)
+        db.session.delete(obj)
+        db.session.commit()
+
+    def eliminacionLogica(self, id):
+        obj = self.consultaIndividuall(id)
+        db.estatus = 'Inactiva'
+        db.editar()
+
+#-----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------Membresias---------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+
+class Membresias(db.Model):
+    __tablename__ = 'membresias'
+    idMembresias = Column(Integer, primary_key=True)
+    nombre = Column(String(45), nullable=False)
+    precio = Column(Float, nullable=False)
+    duracion = Column(Integer, nullable=False)
+    cantidadlibros = Column(Integer, nullable=False)
+    estatus = Column(Integer, nullable=False)
+
+    def consultaGeneral(self):
+        return self.query.all()
+
+    def consultaIndividual(self, id):
+        return self.query.get(id)
+
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self, id):
+        obj = self.consultaIndividual(id)
+        db.session.delete(obj)
+        db.session.commit()

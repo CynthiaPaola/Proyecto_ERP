@@ -12,41 +12,46 @@
             {% block content %}
              <div class="container-fluid">
                 <div class="well">
-                    <h1 class="text-center">LIBROS AUTOR</h1>
+                    <h1 class="text-center">MULTAS PRESTAMO</h1>
                     <br>
-                    <a href="/librosautor/registrarLibrosAutor" class="btn btn-info">Registrar Libros Autor</a>
+                    <a href="/multasprestamo/registrarMultasPrestamo" class="btn btn-info">Registrar Multas Prestamo</a>
                     <div class="table-responsive">
                     <table  id="tablax" class="table">
                         <thead class="thead-dark">
                             <th class="text-center">ID</th>
-                            <th class="text-center">LIBROS</th>
-                            <th class="text-center">AUTOR</th>
+                            <th class="text-center">CATALOGO MULTAS</th>
+                            <th class="text-center">PRESTAMO</th>
+                            <th class="text-center"> PAGAR</th>
+                            <th class="text-center">FECHA</th>
                             <th class="text-center">VER</th>
                             <th class="text-center">ELIMINAR</th>
                         </thead>
-                        {% for librosautor in libr %}
+                        {% for multasprestamo in mult%}
                         <tr>
-                            <td class="text-center">{{librosautor.idLibrosAutor}}</td>
-                            {% for libros in lib %}
-                            {% if libros.idLibros==librosautor.idLibros %}
-                            <td class="text-center">{{libros.titulo}}</td>
+                            <td class="text-center">{{multasprestamo.idMultasPrestamo}}</td>
+                            {% for catalogo in cat %}
+                            {% if catalogo.idCatalogoMultas==multasprestamo.idCatalogoMultas %}
+                            <td class="text-center">{{catalogo.nombre}}</td>
                             {% endif %}
                              {% endfor %}
-                            {% for  autor in aut %}
-                            {% if autor.idAutor==librosautor.idAutor %}
-                            <td class="text-center">{{autor.nombre}}</td>
+                            {% for prestamo in pre %}
+                            {% if prestamo.idPrestamo==multasprestamo.idPrestamo %}
+                            <td class="text-center">{{prestamo.fechadevolucion}}</td>
                             {% endif %}
                              {% endfor %}
+                            <td class="text-center">{{multasprestamo.cantPagar}}</td>
+                            <td class="text-center">{{multasprestamo.fecha}}</td>
                             <td class="text-center">
-                                <a href="/librosautor/ver/{{librosautor.idLibrosAutor}}">
+                                <a href="/multasprestamo/ver/{{multasprestamo.idMultasPrestamo}}">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                          </td>
-                             <td class="text-center">
-                                <a href="/librosautor/eliminarLibrosAutor/{{librosautor.idLibrosAutor}}">
+                            <td class="text-center">
+                                <a href="/multasprestamo/eliminarMultasPrestamo/{{multasprestamo.idMultasPrestamo}}">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>
+
                         </tr>
                         {% endfor %}
                         </table>
