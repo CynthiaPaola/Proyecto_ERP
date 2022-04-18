@@ -361,6 +361,62 @@ def editandoLibros():
         flash('!Error al actualizar!')
     return render_template('/libros/editar.html', lib=libros)
 
+# ________________________________________________________________________________
+# --------------------------------PEDIDOS-----------------------------------------
+# ________________________________________________________________________________
+@app.route('/Pedidos/consultarPedidos')
+#@login_required
+def consultarPedidos():
+    pedidos=Pedidos()
+    return render_template('/Pedidos/consultar.html',ped=pedidos.consultaGeneral())
+
+@app.route('/pedidos/registrarPedidos')
+#@login_required
+def registrarPedidos():
+    return render_template('/Pedidos/nuevo.html')
+
+@app.route('/Pedidos/guardandoPedidos',methods=['post'])
+#@login_required
+def guardandoPedidos():
+    pedidos = Pedidos()
+    pedidos.fecha = request.form['fecha']
+    pedidos.cantidad = request.form['cantidad']
+    pedidos.totalPagar = request.form['totalPagar']
+    pedidos.estatus = request.form['estatus']
+    pedidos.insertar()
+    flash('Pedido registrado exitosamente')
+    return redirect(url_for('registrarPedidos'))
+
+@app.route('/Pedidos/ver/<int:id>')
+#@login_required
+def editarPedidos(id):
+    pedidos = Pedidos()
+    return render_template('/Pedidos/editar.html', ped=pedidos.consultaIndividual(id))
+
+@app.route('/Pedidos/editandoPedidos',methods=['post'])
+#@login_required
+def editandoPedidos():
+    try:
+        pedidos = Pedidos()
+        pedidos.idPedidos = request.form['idPedidos']
+        pedidos.fecha = request.form['fecha']
+        pedidos.cantidad = request.form['cantidad']
+        pedidos.totalPagar = request.form['totalPagar']
+        pedidos.estatus = request.form['estatus']
+        pedidos.actualizar()
+        flash('Datos actualizados con exito')
+    except:
+        flash('!Error al actualizar!')
+    return render_template('/Pedidos/editar.html', ped=pedidos)
+
+@app.route('/Pedidos/eliminarPedidos/<int:id>')
+#@login_required
+def eliminarPedidos(id):
+    pedidos = Pedidos()
+    pedidos.eliminar(id)
+    flash('Registro de Pedido eliminado con exito')
+    return redirect(url_for('consultarPedidos'))
+
 
 
 # ________________________________________________________________________________
