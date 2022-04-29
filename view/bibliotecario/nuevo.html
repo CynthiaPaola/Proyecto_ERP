@@ -1,10 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
+    <head>
+      <title>{% block title %}Libreria{% endblock %}</title>
+
+    </head>
+
+    <body>
+        {% include "common/navigation_bar.html" %}
+            {% block content %}
+                <div class="container-fluid text-center">
+                    <div class="row">
+                        <div class="col-sm-4" style="background-color: none;"></div>
+                        <div class="well col-sm-4">
+                        <h1 class="text-center">Autor</h1>
+                        <form action="/bibliotecario/guardandoBibliotecario" method="post" enctype="multipart/form-data">
+
+                        <div  class="form-group">
+                            <label for="estateName">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="nombre" required>
+
+                        </div>
+                            <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="text" class="form-control" id="password"  placeholder="estado" maxlength="8" required name="estado">
+                            </div>
+                        <div class="form-group">
+                            <label for="Tipo" class="form-label">Tipo</label>
+                            <select name='tipo'  class="form-control">
+                                <option>Bibliotecario</option>
+                                <option>Cliente</option>
+                                </select>
+                        </div>
+
+                            <div  class="form-group">
+                            <label for="estateName">Estado</label>
+                            <select name='estado'  class="form-control">
+                                <option>Jalisco</option>
+                                <option>Sinaloa</option>
+                                <option>Veracruz</option>
+                                </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="horario" class="form-label">Horario de trabajo</label>
+                            <input type="time" class="form-control" id="horario" required name="horario">
+                            </div>
+
+                        <nav id="bloqueBotones">
+                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <a href="/bibliotecario/consultarBibliotecario" class="btn btn-warning">Regresar</a>
+                        </nav>
+
+                        </form>
+                        <br>
+                            {% if get_flashed_messages() %}
+                                <div id="mensajeAlert" class="alert alert-success alert-dismissible">
+                            {% for message in get_flashed_messages() %}
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>{{message}}</strong>
+                            {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        <p class="text text-center">Este es el pie de pagina</p>
+    </body>
 </html>

@@ -21,24 +21,24 @@
                         <thead class="thead-dark">
                             <th class="text-center">ID</th>
                             <th class="text-center">ID</th>
-                            <th class="text-center">NOMBRE</th>
-                            <th class="text-center">contraseña</th>
-                            <th class="text-center">tipo</th>
-                            <th class="text-center">ESTUDIOS</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Contraseña</th>
+                            <th class="text-center">Tipo</th>
+                            <th class="text-center">Estado</th>
                             <th class="text-center">Horario_Trabajo</th>
                             <th class="text-center">VER</th>
                             <th class="text-center">ELIMINAR</th>
                         </thead>
                         {% for bibliotecario in aut %}
-                        <td class="text-center">{{autor.idBibliotecario}}</td>
-                        <td class="text-center">{{autor.idUsuarios}}</td>
-                            <td class="text-center">{{autor.nombre}}</td>
-                            <td class="text-center">{{autor.password_hash}}</td>
-                            <td class="text-center">{{autor.tipo}}</td>
-                            <td class="text-center">{{autor.estado}}</td>
-                            <td class="text-center">{{autor.horario_Trabajo}}</td>
+                        <td class="text-center">{{bibliotecario.idBibliotecario}}</td>
+                        <td class="text-center">{{bibliotecario.idUsuarios}}</td>
+                            <td class="text-center">{{bibliotecario.nombre}}</td>
+                            <td class="text-center">{{bibliotecario.password_hash}}</td>
+                            <td class="text-center">{{bibliotecario.tipo}}</td>
+                            <td class="text-center">{{bibliotecario.estado}}</td>
+                            <td class="text-center">{{bibliotecario.horario_Trabajo}}</td>
                             <td class="text-center">
-                                <a href="/autor/ver/{{autor.idAutor}}">
+                                <a href="/autor/ver/{{bibliotecario.idBibliotecario}}">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                             </td>
@@ -56,7 +56,7 @@
                             }
                         </script>
                             <td class="text-center">
-                                <a href="/autor/eliminarAutor/{{autor.idAutor}}" type="submit" class="btn btn-success" onclick="return ConfirmDemo()">
+                                <a href="/bibliotecario/eliminarBibliotecario/{{bibliotecario.idB ibliotecario}}" type="submit" class="btn btn-success" onclick="return ConfirmDemo()">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>
