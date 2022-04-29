@@ -53,13 +53,29 @@
                                 {% endfor %}
                             </select>
                         </div>
+                             <script >
+
+                                function ConfirmDemo() {
+
+                                    var mensaje = confirm("¿segur@ de hacer el cambio?");
+
+                                    if (mensaje==true) {
+                                    return true;
+                                    }
+
+                                    else {
+                                    return false;
+                                    }
+                                }
+
+                            </script>
 
 
 
                             <br>
 
                         <nav id="bloqueBotones">
-                            <button type="submit" class="btn btn-success">Actualizar</button>
+                            <button type="submit" class="btn btn-success" onclick="return ConfirmDemo()">Registrar</button>
                             <a href="/librosautor/consultarLibrosAutor" class="btn btn-warning">Regresar</a>
                         </nav>
                         </form>

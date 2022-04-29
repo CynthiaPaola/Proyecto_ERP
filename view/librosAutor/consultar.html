@@ -42,8 +42,24 @@
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                          </td>
+                            <script >
+
+                            function ConfirmDemo() {
+
+                            var mensaje = confirm("¿segur@ de eliminar el resgistro?");
+
+                            if (mensaje==true) {
+                            return true;
+                            }
+
+                            else {
+                            return false;
+                            }
+                            }
+
+                             </script>
                              <td class="text-center">
-                                <a href="/librosautor/eliminarLibrosAutor/{{librosautor.idLibrosAutor}}">
+                                <a href="/librosautor/eliminarLibrosAutor/{{librosautor.idLibrosAutor}}" type="submit" class="btn btn-success" onclick="return ConfirmDemo()">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>

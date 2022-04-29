@@ -22,15 +22,15 @@
                         </div>
                             <div class="form-group">
                             <label for="siglasEst" class="form-label">precio</label>
-                            <input type="number" class="form-control" id="siglasEst"  placeholder="precio" maxlength="100" required name="precio">
+                            <input type="number" class="form-control" id="siglasEst"  placeholder="precio" maxlength="100" min="1" required name="precio">
                             </div>
                         <div class="form-group">
                             <label for="siglasEst" class="form-label">duracion</label>
-                            <input type="number" class="form-control" id="siglasEs"  placeholder="duracion" maxlength="100" required name="duracion">
+                            <input type="number" class="form-control" id="siglasEs"  placeholder="duracion" maxlength="100" min="1" required name="duracion">
                             </div>
                         <div class="form-group">
                             <label for="siglasEst" class="form-label">cantidad libros</label>
-                            <input type="number" class="form-control" id="siglasE"  placeholder="cantidadlibros" maxlength="100" required name="cantidadlibros">
+                            <input type="number" class="form-control" id="siglasE"  placeholder="cantidad Libros" maxlength="100" min="1" required name="cantidadLibros">
                             </div>
 
                         <div  class="mb-3">
@@ -42,8 +42,24 @@
                                     <input type="radio"  id="radio2" name="estatus" value="0">Inactivo
                                 </label>
                         </div>
+                            <script >
+
+                            function ConfirmDemo() {
+
+                                var mensaje = confirm("¿segur@ de hacer un nuevo registro?");
+
+                                if (mensaje==true) {
+                                return true;
+                                }
+
+                                else {
+                                return false;
+                                }
+                            }
+
+                        </script>
                         <nav id="bloqueBotones">
-                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="submit" class="btn btn-success" onclick="return ConfirmDemo()">Registrar</button>
                             <a href="/membresias/consultarmembresias" class="btn btn-warning">Regresar</a>
                         </nav>
 

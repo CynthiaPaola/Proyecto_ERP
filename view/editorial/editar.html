@@ -20,39 +20,51 @@
                             </div>
                             <div class="form-group">
                                 <label>NOMBRE</label>
-                                <input type="text" name="nombre" value="{{edit.nombre}}" pattern="[A-z]{1,15}" class="form-control text-center" required>
+                                <input type="text" name="nombre" value="{{edit.nombre}}"  class="form-control text-center" required>
                             </div>
                             <div class="form-group">
                                 <label>DIRECCION</label>
-                                <input type="text" name="direccion" value="{{edit.direccion}}" pattern="[A-z]{1,15}" class="form-control text-center" required>
+                                <input type="text" name="direccion" value="{{edit.direccion}}"  class="form-control text-center" required>
                             </div>
                             <div class="form-group">
                                 <label>TELEFONO</label>
-                                <input type="number" name="telefono" value="{{edit.telefono}}" pattern="{1,105}" class="form-control text-center" required>
+                                <input type="tel" name="telefono" value="{{edit.telefono}}" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" class="form-control text-center" required>
                             </div>
                             <div class="form-group">
                                 <label>CORREO</label>
-                                <input type="text" name="correo" value="{{edit.correo}}" pattern="[A-z]{1,15}" class="form-control text-center" required>
+                                <input type="email" name="correo" value="{{edit.correo}}"  class="form-control text-center" required>
                             </div>
                             <div class="form-group">
                                 <label>PAIS</label>
-                                <input type="text" name="pais" value="{{edit.pais}}" pattern="[A-z]{1,15}" class="form-control text-center" required>
+                                <select name="pais" value="{{edit.pais}}"   class="form-control" id="pais" name="pais" required>
+                                    <option>Mexico</option>
+                                    <option>Zamora</option>
+                                    <option>Sahuayo</option>
+                                </select>
                             </div>
 
-                            <div  class="mb-3">
-                                <label class="form-label">Estatus: </label>
-                                <label class="form-check-label" for="radio1">
-                                    <input type="radio" id="radio1" name="estatus" value="1"checked>Activo
-                                </label>
-                                <label class="form-check-label" for="radio2">
-                                    <input type="radio"  id="radio2" name="estatus" value="0">Inactivo
-                                </label>
-                            </div>
+
+                            <script >
+
+                                function ConfirmDemo() {
+
+                                    var mensaje = confirm("¿segur@ de hacer el cambio?");
+
+                                    if (mensaje==true) {
+                                    return true;
+                                    }
+
+                                    else {
+                                    return false;
+                                    }
+                                }
+
+                            </script>
 
                             <br>
 
                         <nav id="bloqueBotones">
-                            <button type="submit" class="btn btn-success">Actualizar</button>
+                            <button type="submit" class="btn btn-success" onclick="return ConfirmDemo()">Registrar</button>
                             <a href="/editorial/consultarEditorial" class="btn btn-warning">Regresar</a>
                         </nav>
                         </form>

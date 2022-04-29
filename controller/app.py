@@ -4,11 +4,11 @@ from urllib import request
 from flask import Flask,render_template,request,flash,redirect,url_for,abort
 from flask_bootstrap import Bootstrap
 from flask_login import current_user,login_user,logout_user,login_manager,login_required,LoginManager
-from model.DAO import db, CatalogoMultas, Categorias, Proveedores,Editorial,Membresias,Login,Libros,Autor,LibrosAutor,Prestamo,MultasPrestamo
+from model.DAO import db, CatalogoMultas, Categorias, Proveedores,Editorial,Membresias,Login,Libros,Autor,LibrosAutor,Prestamo,MultasPrestamo,Usuarios
 app=Flask(__name__, template_folder='../view', static_folder='../static')
 Bootstrap(app)
 #---------------------Conexion -----------------------------------------
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://user_erpbiblioteca:toni@localhost/erpbiblioteca'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://user_erpbiblioteca:Alejandro@localhost/erpbiblioteca'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.secret_key='cl4v3'
 login_manager=LoginManager()
@@ -70,7 +70,7 @@ def guardandoCatalogoMultas():
     catalogo.estatus = request.form['estatus']
     catalogo.insertar()
     flash('Catalogo de Multas registrado exitosamente')
-    return redirect(url_for('registrarCatalogoMultas'))
+    return redirect(url_for('consultarCatalogoMultas'))
 
 @app.route('/catalogoMultas/ver/<int:id>')
 #@login_required
@@ -92,7 +92,7 @@ def editandoCatalogoMultas():
         flash('Datos actualizados con exito')
     except:
         flash('!Error al actualizar!')
-    return render_template('/catalogoMultas/editar.html', catal=catalogo)
+    return render_template('/catalogoMultas/consultar.html', catal=catalogo.consultaGeneral())
 
 #@app.route('/catalogoMultas/eliminarCatalogoMultas/<int:id>')
 #@login_required
@@ -118,9 +118,7 @@ def eliminarCatalogoMultas(id):
 def consultarCategorias():
     categorias = Categorias()
     return render_template('/categorias/consultar.html', cate=categorias.consultaGeneral())
-#________________________________________________________________________________
-#--------------------------------Categorias empese aqui----------------------------------
-#________________________________________________________________________________
+
 
 @app.route('/categorias/registrarCategorias')
 #@login_required
@@ -135,7 +133,7 @@ def guardandoCategorias():
     categorias.estatus = request.form['estatus']
     categorias.insertar()
     flash('Catalogo de categorias registrado exitosamente')
-    return redirect(url_for('registrarCategorias'))
+    return redirect(url_for('consultarCategorias'))
 
 @app.route('/categorias/ver/<int:id>')
 #@login_required
@@ -155,7 +153,7 @@ def editandoCategorias():
         flash('Datos actualizados con exito')
     except:
         flash('!Error al actualizar!')
-    return render_template('/categorias/editar.html', cate=categorias)
+    return render_template('/categorias/consultar.html', cate=categorias.consultaGeneral())
 
 @app.route('/categorias/eliminarCategoria/<int:id>')
 #@login_required
@@ -191,7 +189,7 @@ def guardandoProveedores():
     proveedores.pais = request.form['pais']
     proveedores.insertar()
     flash('Proveedor registrado exitosamente')
-    return redirect(url_for('registrarProveedores'))
+    return redirect(url_for('consultarProveedores'))
 
 @app.route('/proveedores/ver/<int:id>')
 #@login_required
@@ -214,7 +212,7 @@ def editandoProveedores():
         flash('Datos actualizados con exito')
     except:
         flash('!Error al actualizar!')
-    return render_template('/proveedores/editar.html', prov=proveedores)
+    return render_template('/proveedores/consultar.html', prov=proveedores.consultaGeneral())
 
 @app.route('/proveedores/eliminarProveedores/<int:id>')
 #@login_required
@@ -251,7 +249,7 @@ def guardandoEditorial():
     editorial.pais = request.form['pais']
     editorial.insertar()
     flash('Editorial registrado exitosamente')
-    return redirect(url_for('registrarEditorial'))
+    return redirect(url_for('consultarEditorial'))
 
 @app.route('/editorial/ver/<int:id>')
 #@login_required
@@ -274,7 +272,7 @@ def editandoEditorial():
         flash('Datos actualizados con exito')
     except:
         flash('!Error al actualizar!')
-    return render_template('/editorial/editar.html', edit=editorial)
+    return render_template('/editorial/consultar.html', edit=editorial.consultaGeneral())
 
 @app.route('/editorial/eliminarEditorial/<int:id>')
 #@login_required
@@ -328,7 +326,7 @@ def guardandoLibros():
     libros.precioCompra = request.form['precioCompra']
     libros.insertar()
     flash('libro registrado exitosamente')
-    return redirect(url_for('registrarMembresias'))
+    return redirect(url_for('consultarLibros'))
 
 
 
@@ -346,6 +344,8 @@ def editarLibros(id):
 def editandoLibros():
     try:
         libros = Libros()
+        categorias = Categorias()
+        editorial = Editorial()
         libros.idLibros=request.form['idLibros']
         libros.idCategorias = request.form['idCategorias']
         libros.idEditorial = request.form['idEditorial']
@@ -359,65 +359,15 @@ def editandoLibros():
         flash('Datos actualizados con exito')
     except:
         flash('!Error al actualizar!')
-    return render_template('/libros/editar.html', lib=libros)
+    return render_template('/libros/consultar.html', lib=libros.consultaGeneral(),cat=categorias.consultaGeneral(),edit=editorial.consultaGeneral())
 
-# ________________________________________________________________________________
-# --------------------------------PEDIDOS-----------------------------------------
-# ________________________________________________________________________________
-@app.route('/Pedidos/consultarPedidos')
+@app.route('/libros/eliminarLibros/<int:id>')
 #@login_required
-def consultarPedidos():
-    pedidos=Pedidos()
-    return render_template('/Pedidos/consultar.html',ped=pedidos.consultaGeneral())
-
-@app.route('/pedidos/registrarPedidos')
-#@login_required
-def registrarPedidos():
-    return render_template('/Pedidos/nuevo.html')
-
-@app.route('/Pedidos/guardandoPedidos',methods=['post'])
-#@login_required
-def guardandoPedidos():
-    pedidos = Pedidos()
-    pedidos.fecha = request.form['fecha']
-    pedidos.cantidad = request.form['cantidad']
-    pedidos.totalPagar = request.form['totalPagar']
-    pedidos.estatus = request.form['estatus']
-    pedidos.insertar()
-    flash('Pedido registrado exitosamente')
-    return redirect(url_for('registrarPedidos'))
-
-@app.route('/Pedidos/ver/<int:id>')
-#@login_required
-def editarPedidos(id):
-    pedidos = Pedidos()
-    return render_template('/Pedidos/editar.html', ped=pedidos.consultaIndividual(id))
-
-@app.route('/Pedidos/editandoPedidos',methods=['post'])
-#@login_required
-def editandoPedidos():
-    try:
-        pedidos = Pedidos()
-        pedidos.idPedidos = request.form['idPedidos']
-        pedidos.fecha = request.form['fecha']
-        pedidos.cantidad = request.form['cantidad']
-        pedidos.totalPagar = request.form['totalPagar']
-        pedidos.estatus = request.form['estatus']
-        pedidos.actualizar()
-        flash('Datos actualizados con exito')
-    except:
-        flash('!Error al actualizar!')
-    return render_template('/Pedidos/editar.html', ped=pedidos)
-
-@app.route('/Pedidos/eliminarPedidos/<int:id>')
-#@login_required
-def eliminarPedidos(id):
-    pedidos = Pedidos()
-    pedidos.eliminar(id)
-    flash('Registro de Pedido eliminado con exito')
-    return redirect(url_for('consultarPedidos'))
-
-
+def eliminarLibros(id):
+    libros = Libros()
+    libros.eliminar(id)
+    flash('Registro del Catalogo de Multas eliminado con exito')
+    return redirect(url_for('consultarLibros'))
 
 # ________________________________________________________________________________
 # --------------------------------LIBROS autor-------------------------------------
@@ -449,7 +399,7 @@ def guardandoLibrosAutor():
     librosautor.idAutor = request.form['idAutor']
     librosautor.insertar()
     flash('libro registrado exitosamente')
-    return redirect(url_for('registrarLibrosAutor'))
+    return redirect(url_for('consultarLibrosAutor'))
 
 
 
@@ -470,6 +420,8 @@ def editarLibrosAutor(id):
 def editandoLibrosAutor():
     try:
         librosautor = LibrosAutor()
+        libros = Libros()
+        autor = Autor()
         librosautor.idLibrosAutor = request.form['idLibrosAutor']
         librosautor.idLibros = request.form['idLibros']
         librosautor.idAutor = request.form['idAutor']
@@ -477,7 +429,7 @@ def editandoLibrosAutor():
         flash('Datos actualizados con exito')
     except:
         flash('!Error al actualizar!')
-    return render_template('/librosautor/editar.html', libr=librosautor)
+    return render_template('/librosautor/consultar.html', libr=librosautor.consultaGeneral(),lib=libros.consultaGeneral(),aut=autor.consultaGeneral())
 
 @app.route('/librosautor/eliminarLibrosAutor/<int:id>')
 #@login_required
@@ -488,15 +440,7 @@ def eliminarLibrosAutor(id):
     return redirect(url_for('consultarLibrosAutor'))
 
 
-# ________________________________________________________________________________
-# -------------------------------- autor-------------------------------------
-# ________________________________________________________________________________
 
-@app.route('/libros/consultarLibros')
-#@login_required
-def consultarAutor():
-    autor=Autor()
-    return render_template('/libros/consultar.html',aut=autor.consultaGeneral())
 
 
 
@@ -532,7 +476,7 @@ def guardandoMultasPrestamo():
     multasprestamo.fecha = request.form['fecha']
     multasprestamo.insertar()
     flash('multa registrado exitosamente')
-    return redirect(url_for('registrarMultasPrestamo'))
+    return redirect(url_for('consultarMultasPrestamo'))
 
 
 
@@ -561,7 +505,7 @@ def editandoMultasPrestamo():
         flash('Datos actualizados con exito')
     except:
         flash('!Error al actualizar!')
-    return render_template('/multasprestamo/editar.html', mult=multasprestamo)
+    return render_template('/multasprestamo/consultar.html', mult=multasprestamo.consultaGeneral())
 
 # ________________________________________________________________________________
 # --------------------------------Membresias-------------------------------------
@@ -588,18 +532,18 @@ def guardandoMembresias():
     membresias.nombre = request.form['nombre']
     membresias.precio = request.form['precio']
     membresias.duracion = request.form['duracion']
-    membresias.cantidadlibros=request.form['cantidadlibros']
+    membresias.cantidadLibros=request.form['cantidadLibros']
     membresias.estatus = request.form['estatus']
     membresias.insertar()
     flash('Membresia registrada exitosamente')
-    return redirect(url_for('registrarMembresias'))
+    return redirect(url_for('consultarMembresias'))
 
 
 @app.route('/membresias/ver/<int:id>')
 #@login_required
 def editarMembresias(id):
     membresias = Membresias()
-    return render_template('/membresias/editarMem.html', mem=membresias.consultaIndividual(id))
+    return render_template('/membresias/editar.html', memb=membresias.consultaIndividual(id))
 
 
 @app.route('/membresias/editandoMembresias', methods=['post'])
@@ -607,23 +551,126 @@ def editarMembresias(id):
 def editandoMembresias():
     try:
         membresias = Membresias()
+        membresias.idMembresias = request.form['idMembresias']
         membresias.nombre = request.form['nombre']
         membresias.precio = request.form['precio']
         membresias.duracion = request.form['duracion']
-        membresias.cantidadlibros = request.form['cantidadlibros']
-        membresias.fechaInicio = request.form['fechaInicio']
-        membresias.fechaFin = request.form['fechaFin']
+        membresias.cantidadLibros = request.form['cantidadLibros']
+        membresias.estatus = request.form['estatus']
         membresias.actualizar()
         flash('Datos actualizados con exito')
     except:
         flash('!Error al actualizar!')
-    return render_template('/membresias/editarMem.html', mem=membresias)
+    return render_template('/membresias/consultar.html', memb=membresias.consultaGeneral())
 
+
+
+@app.route('/membresias/eliminarMembresias/<int:id>')
+#@login_required
 def eliminarMembresias(id):
     membresias = Membresias()
     membresias.eliminar(id)
     flash('Registro de la Membresia eliminado con exito')
     return redirect(url_for('consultarMembresias'))
+
+# ________________________________________________________________________________
+# --------------------------------usuarios-------------------------------------
+# ________________________________________________________________________________
+
+@app.route('/usuarios/consultarUsuarios')
+#@login_required
+def consultarUsuarios():
+    usuarios=Usuarios()
+    return render_template('/usuarios/consultar.html', usu=usuarios.consultaGeneral())
+
+@app.route('/usuarios/registrarUsuarios')
+# @login_required
+def registrarUsuarios():
+    return render_template('/usuarios/nuevo.html')
+
+
+@app.route('/usuarios/guardandoUsuarios', methods=['post'])
+# @login_required
+def guardandoUsuarios():
+    usuarios = Usuarios()
+    usuarios.nodedocumento= request.form['nodedocumento']
+    usuarios.nombreCompleto = request.form['nombreCompleto']
+    usuarios.appaterno = request.form['appaterno']
+    usuarios.apmaterno=request.form['apmaterno']
+    usuarios.sexo = request.form['sexo']
+    usuarios.direccion = request.form['direccion']
+    usuarios.telefono = request.form['telefono']
+    usuarios.email = request.form['email']
+    usuarios.insertar()
+    flash('Usuario registrado exitosamente')
+    return redirect(url_for('consultarUsuarios'))
+
+# ________________________________________________________________________________
+# --------------------------------autor-------------------------------------
+# ________________________________________________________________________________
+
+
+@app.route('/autor/consultarAutor')
+#@login_required
+def consultarAutor():
+    autor=Autor()
+    return render_template('/autor/consultar.html', aut=autor.consultaGeneral())
+
+@app.route('/autor/registrarAutor')
+# @login_required
+def registrarAutor():
+    return render_template('/autor/nuevo.html')
+
+
+@app.route('/autor/guardandoAutor', methods=['post'])
+# @login_required
+def guardandoAutor():
+    autor = Autor()
+    autor.pais = request.form['pais']
+    autor.nombre = request.form['nombre']
+    autor.ciudad = request.form['ciudad']
+    autor.anioNacimiento=request.form['anioNacimiento']
+    autor.estudios = request.form['estudios']
+    autor.insertar()
+    flash('Autor registrado exitosamente')
+    return redirect(url_for('consultarAutor'))
+
+@app.route('/autor/ver/<int:id>')
+#@login_required
+def editarAutor(id):
+    autor = Autor()
+    return render_template('/autor/editar.html', aut=autor.consultaIndividual(id))
+
+
+@app.route('/autor/editandoAutor', methods=['post'])
+#@login_required
+def editandoAutor():
+    try:
+        autor = Autor()
+        autor.idAutor=request.form['idAutor']
+        autor.pais = request.form['pais']
+        autor.nombre = request.form['nombre']
+        autor.ciudad = request.form['ciudad']
+        autor.anioNacimiento = request.form['anioNacimiento']
+        autor.estudios = request.form['estudios']
+        autor.actualizar()
+        flash('Datos actualizados con exito')
+    except:
+        flash('!Error al actualizar!')
+    return render_template('/autor/consulat.html', aut=autor.consultaGeneral())
+
+
+
+@app.route('/autor/eliminarAutor/<int:id>')
+#@login_required
+def eliminarAutor(id):
+    autor = Autor()
+    autor.eliminar(id)
+    flash('Registro del Autor eliminado con exito')
+    return redirect(url_for('consultarAutor'))
+
+
+
 
 
 if __name__ == '__main__':

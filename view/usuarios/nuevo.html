@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+      <title>{% block title %}Libreria{% endblock %}</title>
+
+    </head>
+
+    <body>
+        {% include "common/navigation_bar.html" %}
+            {% block content %}
+                <div class="container-fluid text-center">
+                    <div class="row">
+                        <div class="col-sm-4" style="background-color: none;"></div>
+                        <div class="well col-sm-4">
+                        <h1 class="text-center">Nuevo Usuario</h1>
+                        <form action="/usuarios/guardandoUsuarios" method="post" enctype="multipart/form-data">
+
+                        <div  class="form-group">
+                            <label for="nodedocumento">No de documento</label>
+                            <input type="number" class="form-control" id="nodedocumento"  placeholder="No de documento" maxlength="80" required name="nodedocumento">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreCompleto" class="form-label">nombre completo</label>
+                            <input type="text" class="form-control" id="nombreCompleto"  placeholder="nombre Completo" maxlength="100" required name="nombreCompleto">
+                            </div>
+                        <div class="form-group">
+                            <label for="appaterno" class="form-label">ap paterno</label>
+                            <input type="text" class="form-control" id="appaterno"  placeholder="ap paterno" maxlength="100" required name="appaterno">
+                            </div>
+                            <div class="form-group">
+                            <label for="apmaterno" class="form-label">ap materno</label>
+                            <input type="text" class="form-control" id="apmaterno"  placeholder="ap materno" maxlength="100" required name="apmaterno">
+                            </div>
+
+                        <div  class="mb-3">
+                                <label class="form-label">sexo: </label>
+                                <label class="form-check-label" for="radio1">
+                                    <input type="radio" id="radio1" name="sexo" value="H"checked>Hombre
+                                </label>
+                                <label class="form-check-label" for="radio2">
+                                    <input type="radio"  id="radio2" name="sexo" value="M">Mujer
+                                </label>
+                        </div>
+                            <div class="form-group">
+                            <label for="direccion" class="form-label">direccion</label>
+                            <input type="text" class="form-control" id="direccion"  placeholder="direccion" maxlength="100" required name="direccion">
+                            </div>
+                            <div class="form-group">
+                            <label for="telefono" class="form-label">telefono</label>
+                            <input type="text" class="form-control" id="telefono"  placeholder="telefono" maxlength="100" required name="telefono">
+                            </div>
+                            <div class="form-group">
+                            <label for="email" class="form-label">email</label>
+                            <input type="text" class="form-control" id="email"  placeholder="email" maxlength="100" required name="email">
+                            </div>
+                        <nav id="bloqueBotones">
+                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <a href="/usuarios/consultarUsuarios" class="btn btn-warning">Regresar</a>
+                        </nav>
+
+                        </form>
+                        <br>
+                            {% if get_flashed_messages() %}
+                                <div id="mensajeAlert" class="alert alert-success alert-dismissible">
+                            {% for message in get_flashed_messages() %}
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>{{message}}</strong>
+                            {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        <p class="text text-center">Este es el pie de pagina</p>
+    </body>
+</html>

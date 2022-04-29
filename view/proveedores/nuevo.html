@@ -26,29 +26,39 @@
                         </div>
                             <div  class="form-group">
                             <label for="estateName">Telefono</label>
-                            <input type="text" class="form-control" id="telefono"  placeholder="telefono del proveedor a registrar" maxlength="80" required name="telefono">
+                            <input type="tel" class="form-control" id="telefono" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" placeholder="telefono del proveedor a registrar" maxlength="80" required name="telefono">
                         </div>
                             <div  class="form-group">
                             <label for="estateName">Correo</label>
-                            <input type="text" class="form-control" id="correo"  placeholder="correo del proveedor a registrar" maxlength="80" required name="correo">
-                        </div>
-                            <div>
-                            <div  class="form-group">
-                            <label for="estateName">Pais</label>
-                            <input type="text" class="form-control" id="pais"  placeholder="pais del proveedor a registrar" maxlength="80" required name="pais">
+                            <input type="email" class="form-control" id="correo"  placeholder="correo del proveedor a registrar" maxlength="80" required name="correo">
                         </div>
 
-                        <div  class="mb-3">
-                                <label class="form-label">Estatus: </label>
-                                <label class="form-check-label" for="radio1">
-                                    <input type="radio" id="radio1" name="estatus" value="1"checked>Activo
-                                </label>
-                                <label class="form-check-label" for="radio2">
-                                    <input type="radio"  id="radio2" name="estatus" value="0">Inactivo
-                                </label>
-                        </div>
+                                 <div class="form-group">
+                                <label>PAIS</label>
+                                <select name="pais"   class="form-control" id="pais" name="pais" required>
+                                    <option>Mexico</option>
+                                    <option>Zamora</option>
+                                    <option>Sahuayo</option>
+                                </select>
+                            </div>
+ <script >
+
+        function ConfirmDemo() {
+
+            var mensaje = confirm("¿segur@ de hacer un nuevo registro?");
+
+            if (mensaje==true) {
+            return true;
+            }
+
+            else {
+            return false;
+            }
+        }
+
+    </script>
                         <nav id="bloqueBotones">
-                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="submit" class="btn btn-success" onclick="return ConfirmDemo()">Registrar</button>
                             <a href="/proveedores/consultarProveedores" class="btn btn-warning">Regresar</a>
                         </nav>
 

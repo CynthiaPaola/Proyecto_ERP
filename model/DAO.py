@@ -258,7 +258,7 @@ class LibrosAutor(db.Model):
 
 
 #-----------------------------------------------------------------------------------------------------------------------
-#------------------------------------------------------Autor solo el dao---------------------------------------------------
+#------------------------------------------------------Autor---------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------
 
 
@@ -397,8 +397,44 @@ class Membresias(db.Model):
     nombre = Column(String(45), nullable=False)
     precio = Column(Float, nullable=False)
     duracion = Column(Integer, nullable=False)
-    cantidadlibros = Column(Integer, nullable=False)
+    cantidadLibros = Column(Integer, nullable=False)
     estatus = Column(Integer, nullable=False)
+
+    def consultaGeneral(self):
+        return self.query.all()
+
+    def consultaIndividual(self, id):
+        return self.query.get(id)
+
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self, id):
+        obj = self.consultaIndividual(id)
+        db.session.delete(obj)
+        db.session.commit()
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------Usuarios---------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+
+class Usuarios(db.Model):
+    __tablename__ = 'usuarios'
+    idUsuarios = Column(Integer, primary_key=True)
+    nodedocumento = Column(Integer, nullable=False)
+    nombreCompleto = Column(String(45), nullable=False)
+    appaterno = Column(String(45), nullable=False)
+    apmaterno = Column(String(45), nullable=False)
+    sexo = Column(String(4), nullable=False)
+    direccion = Column(String(45), nullable=False)
+    telefono = Column(CHAR(15), nullable=False)
+    email = Column(String(45), nullable=False)
 
     def consultaGeneral(self):
         return self.query.all()

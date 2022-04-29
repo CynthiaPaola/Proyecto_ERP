@@ -12,59 +12,47 @@
             {% block content %}
              <div class="container-fluid">
                 <div class="well">
-                    <h1 class="text-center">EDITORIAL REGISTRADOS</h1>
+                    <h1 class="text-center"> USUARIOS</h1>
                     <br>
-                    <a href="/editorial/registrarEditorial" class="btn btn-info">Registrar Editorial</a>
+                    <a href="/usuarios/registrarUsuarios" class="btn btn-info">Registrar nuevo Usuario</a>
                     <div class="table-responsive">
                     <table  id="tablax" class="table">
                         <thead class="thead-dark">
                             <th class="text-center">ID</th>
+                            <th class="text-center">NO de DOCUEMNTO</th>
                             <th class="text-center">NOMBRE</th>
+                            <th class="text-center">AP. PATERNO</th>
+                            <th class="text-center">AP. MATERNO</th>
+                            <th class="text-center">SEXO</th>
                             <th class="text-center">DIRECCION</th>
                             <th class="text-center">TELEFONO</th>
-                            <th class="text-center">CORREO</th>
-                            <th class="text-center">PAIS</th>
+                            <th class="text-center">EMAIL</th>
                             <th class="text-center">VER</th>
                             <th class="text-center">ELIMINAR</th>
                         </thead>
-                        {% for editorial in edit %}
+                        {% for usuarios in usu %}
                         <tr>
-
-                            <td class="text-center">{{editorial.idEditorial}}</td>
-                            <td class="text-center">{{editorial.nombre}}</td>
-                            <td class="text-center">{{editorial.direccion}}</td>
-                            <td class="text-center">{{editorial.telefono}}</td>
-                            <td class="text-center">{{editorial.correo}}</td>
-                            <td class="text-center">{{editorial.pais}}</td>
+                            <td class="text-center">{{usuarios.idUsuarios}}</td>
+                            <td class="text-center">{{usuarios.nodedocumento}}</td>
+                            <td class="text-center">{{usuarios.nombreCompleto}}</td>
+                            <td class="text-center">{{usuarios.appaterno}}</td>
+                            <td class="text-center">{{usuarios.apmaterno}}</td>
+                            <td class="text-center">{{usuarios.sexo}}</td>
+                            <td class="text-center">{{usuarios.direccion}}</td>
+                            <td class="text-center">{{usuarios.telefono}}</td>
+                            <td class="text-center">{{usuarios.email}}</td>
                             <td class="text-center">
-                                <a href="/editorial/ver/{{editorial.idEditorial}}">
+                                <a href="/usuarios/ver/{{usuarios.idUsuarios}}">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                             </td>
-                            <script >
-
-                            function ConfirmDemo() {
-
-                            var mensaje = confirm("¿segur@ de eliminar el resgistro?");
-
-                            if (mensaje==true) {
-                            return true;
-                            }
-
-                            else {
-                            return false;
-                            }
-                            }
-
-                             </script>
                             <td class="text-center">
-                                <a href="/editorial/eliminarEditorial/{{editorial.idEditorial}}" type="submit" class="btn btn-success" onclick="return ConfirmDemo()">
+                                <a href="/usuarios/eliminarUsuarios/{{usuarios.idUsuarios}}">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>
                         </tr>
                         {% endfor %}
-
                     </table>
                     </div>
                     <br>

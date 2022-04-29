@@ -59,12 +59,12 @@
                         </div>
                             <div  class="form-group">
                             <label for="estateName">numEdicion</label>
-                            <input type="text" class="form-control" id="numEdicion" value="{{lib.numEdicion}}" placeholder="numEdicion" maxlength="80" required name="numEdicion">
+                            <input type="number" class="form-control" id="numEdicion" min="1" value="{{lib.numEdicion}}" placeholder="numEdicion" maxlength="80" required name="numEdicion">
                         </div>
                             <div>
                             <div  class="form-group">
                             <label for="estateName">numPaginas</label>
-                            <input type="text" class="form-control" id="numPaginas" value="{{lib.numPaginas}}"  placeholder="numPaginas" maxlength="80" required name="numPaginas">
+                            <input type="number" class="form-control" id="numPaginas" min="1" value="{{lib.numPaginas}}"  placeholder="numPaginas" maxlength="80" required name="numPaginas">
                         </div>
                                 <div>
                             <div  class="form-group">
@@ -74,20 +74,35 @@
                                     <div>
                             <div  class="form-group">
                             <label for="estateName">precioVenta</label>
-                            <input type="text" class="form-control" id="precioVenta" value="{{lib.precioVenta}}"  placeholder="precioVenta" maxlength="80" required name="precioVenta">
+                            <input type="number" class="form-control" id="precioVenta" value="{{lib.precioVenta}}" min="1" placeholder="precioVenta" maxlength="80" required name="precioVenta">
                         </div>
                                         <div>
                             <div  class="form-group">
                             <label for="estateName">precioCompra</label>
-                            <input type="text" class="form-control" id="precioCompra" value="{{lib.precioCompra}}" placeholder="precioCompra" maxlength="80" required name="precioCompra">
+                            <input type="number" class="form-control" min="1" id="precioCompra" value="{{lib.precioCompra}}" placeholder="precioCompra" maxlength="80" required name="precioCompra">
                         </div>
 
+                                <script >
 
+                                function ConfirmDemo() {
+
+                                    var mensaje = confirm("¿segur@ de hacer el cambio?");
+
+                                    if (mensaje==true) {
+                                    return true;
+                                    }
+
+                                    else {
+                                    return false;
+                                    }
+                                }
+
+                            </script>
 
                             <br>
 
                         <nav id="bloqueBotones">
-                            <button type="submit" class="btn btn-success">Actualizar</button>
+                            <button type="submit" class="btn btn-success" onclick="return ConfirmDemo()">Registrar</button>
                             <a href="/libros/consultarLibros" class="btn btn-warning">Regresar</a>
                         </nav>
                         </form>

@@ -12,32 +12,31 @@
             {% block content %}
              <div class="container-fluid">
                 <div class="well">
-                    <h1 class="text-center">EDITORIAL REGISTRADOS</h1>
+                    <h1 class="text-center">AUTORES REGISTRADOS</h1>
                     <br>
-                    <a href="/editorial/registrarEditorial" class="btn btn-info">Registrar Editorial</a>
+                        <a href="/autor/registrarAutor" class="btn btn-info">Registrar Autor</a>
                     <div class="table-responsive">
                     <table  id="tablax" class="table">
                         <thead class="thead-dark">
                             <th class="text-center">ID</th>
-                            <th class="text-center">NOMBRE</th>
-                            <th class="text-center">DIRECCION</th>
-                            <th class="text-center">TELEFONO</th>
-                            <th class="text-center">CORREO</th>
                             <th class="text-center">PAIS</th>
+                            <th class="text-center">NOMBRE</th>
+                            <th class="text-center">CIUDAD</th>
+                            <th class="text-center">AÑO DE NACIMIENTO</th>
+                            <th class="text-center">ESTUDIOS</th>
                             <th class="text-center">VER</th>
                             <th class="text-center">ELIMINAR</th>
                         </thead>
-                        {% for editorial in edit %}
+                        {% for autor in aut %}
                         <tr>
-
-                            <td class="text-center">{{editorial.idEditorial}}</td>
-                            <td class="text-center">{{editorial.nombre}}</td>
-                            <td class="text-center">{{editorial.direccion}}</td>
-                            <td class="text-center">{{editorial.telefono}}</td>
-                            <td class="text-center">{{editorial.correo}}</td>
-                            <td class="text-center">{{editorial.pais}}</td>
+                            <td class="text-center">{{autor.idAutor}}</td>
+                            <td class="text-center">{{autor.pais}}</td>
+                            <td class="text-center">{{autor.nombre}}</td>
+                            <td class="text-center">{{autor.ciudad}}</td>
+                            <td class="text-center">{{autor.anioNacimiento}}</td>
+                            <td class="text-center">{{autor.estudios}}</td>
                             <td class="text-center">
-                                <a href="/editorial/ver/{{editorial.idEditorial}}">
+                                <a href="/autor/ver/{{autor.idAutor}}">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                             </td>
@@ -58,7 +57,7 @@
 
                              </script>
                             <td class="text-center">
-                                <a href="/editorial/eliminarEditorial/{{editorial.idEditorial}}" type="submit" class="btn btn-success" onclick="return ConfirmDemo()">
+                                <a href="/autor/eliminarAutor/{{autor.idAutor}}" type="submit" class="btn btn-success" onclick="return ConfirmDemo()">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>

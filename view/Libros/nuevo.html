@@ -40,12 +40,12 @@
                         </div>
                             <div  class="form-group">
                             <label for="estateName">numEdicion</label>
-                            <input type="text" class="form-control" id="numEdicion"  placeholder="numEdicion" maxlength="80" required name="numEdicion">
+                            <input type="number" class="form-control" id="numEdicion"  placeholder="numEdicion" maxlength="80" min="1" required name="numEdicion">
                         </div>
                             <div>
                             <div  class="form-group">
                             <label for="estateName">numPaginas</label>
-                            <input type="text" class="form-control" id="numPaginas"  placeholder="numPaginas" maxlength="80" required name="numPaginas">
+                            <input type="number" class="form-control" id="numPaginas"  placeholder="numPaginas" maxlength="80" min="1" required name="numPaginas">
                         </div>
                                 <div>
                             <div  class="form-group">
@@ -55,16 +55,32 @@
                                     <div>
                             <div  class="form-group">
                             <label for="estateName">precioVenta</label>
-                            <input type="text" class="form-control" id="precioVenta"  placeholder="precioVenta" maxlength="80" required name="precioVenta">
+                            <input type="number" class="form-control" id="precioVenta"  placeholder="precioVenta" maxlength="80" min="1" required name="precioVenta">
                         </div>
                                         <div>
                             <div  class="form-group">
                             <label for="estateName">precioCompra</label>
-                            <input type="text" class="form-control" id="precioCompra"  placeholder="precioCompra" maxlength="80" required name="precioCompra">
+                            <input type="number" class="form-control" id="precioCompra"  placeholder="precioCompra" maxlength="80" min="1" required name="precioCompra">
                         </div>
+                                            <script >
+
+                            function ConfirmDemo() {
+
+                                var mensaje = confirm("¿segur@ de hacer un nuevo registro?");
+
+                                if (mensaje==true) {
+                                return true;
+                                }
+
+                                else {
+                                return false;
+                                }
+                            }
+
+                        </script>
 
                         <nav id="bloqueBotones">
-                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="submit" class="btn btn-success" onclick="return ConfirmDemo()">Registrar</button>
                             <a href="/libros/consultarLibros" class="btn btn-warning">Regresar</a>
                         </nav>
 

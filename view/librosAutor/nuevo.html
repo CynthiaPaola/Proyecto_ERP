@@ -34,8 +34,24 @@
                                 {% endfor %}
                             </select>
                         </div>
+                            <script >
+
+                            function ConfirmDemo() {
+
+                                var mensaje = confirm("¿segur@ de hacer un nuevo registro?");
+
+                                if (mensaje==true) {
+                                return true;
+                                }
+
+                                else {
+                                return false;
+                                }
+                            }
+
+                        </script>
                             <nav id="bloqueBotones">
-                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="submit" class="btn btn-success" onclick="return ConfirmDemo()">Registrar</button>
                             <a href="/librosautor/consultarLibrosAutor" class="btn btn-warning">Regresar</a>
                         </nav>
 

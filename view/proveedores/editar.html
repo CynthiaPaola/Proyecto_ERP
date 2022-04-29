@@ -28,31 +28,41 @@
                             </div>
                             <div class="form-group">
                                 <label>TELEFONO</label>
-                                <input type="number" name="telefono" value="{{prov.telefono}}"  class="form-control text-center" required>
+                                <input type="tel" name="telefono" value="{{prov.telefono}}" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" class="form-control text-center" required>
                             </div>
                             <div class="form-group">
                                 <label>CORREO</label>
-                                <input type="text" name="correo" value="{{prov.correo}}"  class="form-control text-center" required>
+                                <input type="email" name="correo" value="{{prov.correo}}"  class="form-control text-center" required>
                             </div>
                             <div class="form-group">
                                 <label>PAIS</label>
-                                <input type="text" name="pais" value="{{prov.pais}}"  class="form-control text-center" required>
+                                <select name="pais" value="{{prov.pais}}"  class="form-control text-center" required>
+                                    <option>Mexico</option>
+                                    <option>Zamora</option>
+                                    <option>Sahuayo</option>
+                                </select>
                             </div>
 
-                            <div  class="mb-3">
-                                <label class="form-label">Estatus: </label>
-                                <label class="form-check-label" for="radio1">
-                                    <input type="radio" id="radio1" name="estatus" value="1"checked>Activo
-                                </label>
-                                <label class="form-check-label" for="radio2">
-                                    <input type="radio"  id="radio2" name="estatus" value="0">Inactivo
-                                </label>
-                            </div>
 
                             <br>
+  <script >
 
+        function ConfirmDemo() {
+
+            var mensaje = confirm("¿segur@ de hacer el cambio?");
+
+            if (mensaje==true) {
+            return true;
+            }
+
+            else {
+            return false;
+            }
+        }
+
+    </script>
                         <nav id="bloqueBotones">
-                            <button type="submit" class="btn btn-success">Actualizar</button>
+                            <button type="submit" class="btn btn-success" onclick="return ConfirmDemo()">Registrar</button>
                             <a href="/proveedores/consultarProveedores" class="btn btn-warning">Regresar</a>
                         </nav>
                         </form>

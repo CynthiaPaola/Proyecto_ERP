@@ -31,17 +31,33 @@
                         <tr>
                             <td class="text-center">{{membresias.idMembresias}}</td>
                             <td class="text-center">{{membresias.nombre}}</td>
-                            <td class="text-center">{{membresias.precio}</td>
+                            <td class="text-center">{{membresias.precio}}</td>
                             <td class="text-center">{{membresias.duracion}}</td>
-                            <td class="text-center">{{membresias.cantidadlibros}}</td>
+                            <td class="text-center">{{membresias.cantidadLibros}}</td>
                             <td class="text-center">{{membresias.estatus}}</td>
                             <td class="text-center">
                                 <a href="/membresias/ver/{{membresias.idMembresias}}">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                             </td>
+                            <script >
+
+                            function ConfirmDemo() {
+
+                            var mensaje = confirm("¿segur@ de eliminar el resgistro?");
+
+                            if (mensaje==true) {
+                            return true;
+                            }
+
+                            else {
+                            return false;
+                            }
+                            }
+
+                             </script>
                             <td class="text-center">
-                                <a href="/membresias/eliminarMembresias/{{membresias.idMembresias}}">
+                                <a href="/membresias/eliminarMembresias/{{membresias.idMembresias}}" type="submit" class="btn btn-success" onclick="return ConfirmDemo()">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>
@@ -63,5 +79,45 @@
             {% endblock %}
         <p class="text text-center">Este es el pie de pagina</p>
 
+<!-- paginacion -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+        </script>
+    <!-- DATATABLES -->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+    </script>
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#tablax').DataTable({
+                language: {
+                    processing: "Tratamiento en curso...",
+                    search: "Buscar&nbsp;:",
+                    lengthMenu: "Agrupar de _MENU_ items",
+                    info: "Mostrando del item _START_ al _END_ de un total de _TOTAL_ items",
+                    infoEmpty: "No existen datos.",
+                    infoFiltered: "(filtrado de _MAX_ elementos en total)",
+                    infoPostFix: "",
+                    loadingRecords: "Cargando...",
+                    zeroRecords: "No se encontraron datos con tu busqueda",
+                    emptyTable: "No hay datos disponibles en la tabla.",
+                    paginate: {
+                        first: "Primero",
+                        previous: "Anterior",
+                        next: "Siguiente",
+                        last: "Ultimo"
+                    },
+                    aria: {
+                        sortAscending: ": active para ordenar la columna en orden ascendente",
+                        sortDescending: ": active para ordenar la columna en orden descendente"
+                    }
+                },
+                scrollY: 400,
+                lengthMenu: [ [10, 25, -1], [10, 25, "All"] ],
+            });
+        });
+    </script>
     </body>
 </html>

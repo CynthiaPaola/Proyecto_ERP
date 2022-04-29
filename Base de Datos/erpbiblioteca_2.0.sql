@@ -209,6 +209,17 @@ create table DetallesVenta(
 	constraint fk_DetallesVenta_Libros foreign key(idLibros) references Libros(idLibros)
 );
 
+create table Pais(
+	idPais int AUTO_INCREMENT not null,
+	nombre varchar(45) not null,
+	constraint fk_Editorial primary key(idPais)
+);
+create table Ciudad(
+	idCiudad int AUTO_INCREMENT not null,
+	nombre varchar(45) not null,
+	constraint fk_Editorial primary key(idCiudad)
+);
+
 /*Crear un usuario para la conexion con la app*/
 drop user user_BibliotecaERP;
 create user user_BibliotecaERP identified by 'Bibliotecario';

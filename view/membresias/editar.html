@@ -12,24 +12,27 @@
                     <div class="row">
                         <div class="col-sm-4" style="background-color: none;"></div>
                         <div class="well col-sm-4">
-                        <h1 class="text-center">REGISTRO DE CATALGO MULTAS</h1>
-                        <form action="/catalogoMultas/editandoCatalogoMultas" method="post" enctype="multipart/form-data">
+                        <h1 class="text-center">REGISTRO DE MEMBRESIAS</h1>
+                        <form action="/membresias/editandoMembresias" method="post" enctype="multipart/form-data">
                             <div class="form-group text-center">
-                                <label>ID CATALOGO MULTA</label>
-                                <input type="number" name="idCatalogoMultas" value="{{catal.idCatalogoMultas}}" class="form-control text-center" readonly>
+                                <label>ID MEMBRESIAS</label>
+                                <input type="number" name="idMembresias" value="{{memb.idMembresias}}" class="form-control text-center" readonly>
                             </div>
                             <div class="form-group">
                                 <label>NOMBRE</label>
-                                <input type="text" name="nombre" value="{{catal.nombre}}"  class="form-control text-center" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Descripcion</label>
-                                <input type="text" name="descripcion" value="{{catal.descripcion}}" class="form-control text-center" required>
+                                <input type="text" name="nombre" value="{{memb.nombre}}"  class="form-control text-center" required>
                             </div>
                             <div class="form-group">
                                 <label>PRECIO</label>
-                                <input type="number" name="precio" value="{{catal.precio}}" class="form-control text-center" min="1" max="1000000" required>
+                                <input type="number" name="precio" value="{{memb.precio}}" min="1" class="form-control text-center" required>
+                            </div>
+                            <div class="form-group">
+                                <label>DURACION</label>
+                                <input type="number" name="duracion" value="{{memb.duracion}}" min="1" class="form-control text-center" required>
+                            </div>
+                            <div class="form-group">
+                                <label>CANTIDAD LIBROS</label>
+                                <input type="number" name="cantidadLibros" value="{{memb.cantidadLibros}}" min="1" class="form-control text-center" required>
                             </div>
                             <div  class="mb-3">
                                 <label class="form-label">Estatus: </label>
@@ -40,27 +43,28 @@
                                     <input type="radio"  id="radio2" name="estatus" value="0">Inactivo
                                 </label>
                             </div>
+                            <script >
+
+                                function ConfirmDemo() {
+
+                                    var mensaje = confirm("¿segur@ de hacer el cambio?");
+
+                                    if (mensaje==true) {
+                                    return true;
+                                    }
+
+                                    else {
+                                    return false;
+                                    }
+                                }
+
+                            </script>
 
                             <br>
- <script >
 
-        function ConfirmDemo() {
-
-            var mensaje = confirm("¿segur@ de hacer el cambio?");
-
-            if (mensaje==true) {
-            return true;
-            }
-
-            else {
-            return false;
-            }
-        }
-
-    </script>
                         <nav id="bloqueBotones">
-                             <button type="submit" class="btn btn-success" onclick="return ConfirmDemo()">Registrar</button>
-                            <a href="/catalogoMultas/consultarCatalogoMultas" class="btn btn-warning">Regresar</a>
+                            <button type="submit" class="btn btn-success" onclick="return ConfirmDemo()">Registrar</button>
+                            <a href="/membresias/consultarMembresias" class="btn btn-warning">Regresar</a>
                         </nav>
                         </form>
                         <br>
