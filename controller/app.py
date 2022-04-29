@@ -4,7 +4,7 @@ from urllib import request
 from flask import Flask,render_template,request,flash,redirect,url_for,abort
 from flask_bootstrap import Bootstrap
 from flask_login import current_user,login_user,logout_user,login_manager,login_required,LoginManager
-from model.DAO import db, CatalogoMultas, Categorias, Proveedores,Editorial,Membresias,Login,Libros,Autor,LibrosAutor,Prestamo,MultasPrestamo,Usuarios
+from model.DAO import db, CatalogoMultas, Categorias, Proveedores,Editorial,Membresias,Login,Libros,Autor,LibrosAutor,Prestamo,MultasPrestamo,Usuarios,Bibliotecario
 app=Flask(__name__, template_folder='../view', static_folder='../static')
 Bootstrap(app)
 #---------------------Conexion -----------------------------------------
