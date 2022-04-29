@@ -7,6 +7,7 @@ from flask_login import current_user,login_user,logout_user,login_manager,login_
 from model.DAO import db, CatalogoMultas, Categorias, Proveedores,Editorial,Membresias,Login,Libros,Autor,LibrosAutor,Prestamo,MultasPrestamo,Usuarios,Bibliotecario
 app=Flask(__name__, template_folder='../view', static_folder='../static')
 Bootstrap(app)
+
 #---------------------Conexion -----------------------------------------
 app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://user_erpbiblioteca:Alejandro@localhost/erpbiblioteca'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
@@ -704,7 +705,7 @@ def guardandoBibliotecario():
 #@login_required
 def editarBibliotecario(id):
     autor = Bibliotecario()
-    return render_template('/bibliotecario/editar.html', bibl=bibliotecario.consultaIndividual(id))
+    return render_template('/bibliotecario/editar.html', bibl=Bibliotecario.consultaIndividual(id))
 
 
 @app.route('/bibliotecario/editandoBibliotecario', methods=['post'])
