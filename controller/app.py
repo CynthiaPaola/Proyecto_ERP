@@ -670,7 +670,68 @@ def eliminarAutor(id):
     return redirect(url_for('consultarAutor'))
 
 
+# ________________________________________________________________________________
+# --------------------------------bibliotecario-------------------------------------
+# ________________________________________________________________________________
 
+
+@app.route('/bibliotecario/consultarBibliotecario')
+#@login_required
+def consultarBibliotecario():
+    bibliotecario = Bibliotecario()
+    return render_template('/bibliotecario/consultar.html', bibl=bibliotecario.consultaGeneral())
+
+@app.route('/bibliotecario/registrarBibliotecario')
+# @login_required
+def registrarBibliotecario():
+    return render_template('/bibliotecario/nuevo.html')
+
+
+@app.route('/bibliotecario/guardandoBibliotecario', methods=['post'])
+# @login_required
+def guardandoBibliotecario():
+    bibliotecario=Bibliotecario()
+    bibliotecario.nombre = request.form['nombre']
+    bibliotecario.password_hash = request.form['password']
+    bibliotecario.tipo = request.form['tipo']
+    bibliotecario.estado = request.form['estado']
+    bibliotecario.horario_trabajo = request.form['horario_trabajo']
+    bibliotecario.insertar()
+    flash('Autor registrado exitosamente')
+    return redirect(url_for('consultarAutor'))
+
+@app.route('/bibliotecario/ver/<int:id>')
+#@login_required
+def editarBibliotecario(id):
+    autor = Bibliotecario()
+    return render_template('/bibliotecario/editar.html', bibl=bibliotecario.consultaIndividual(id))
+
+
+@app.route('/bibliotecario/editandoBibliotecario', methods=['post'])
+#@login_required
+def editandoBibliotecario():
+    try:
+        bibliotecario = Bibliotecario()
+        bibliotecario.nombre = request.form['nombre']
+        bibliotecario.password_hash = request.form['password']
+        bibliotecario.tipo = request.form['tipo']
+        bibliotecario.estado = request.form['estado']
+        bibliotecario.horario_trabajo = request.form['horario_trabajo']
+        bibliotecario.actualizar()
+        flash('Datos actualizados con exito')
+    except:
+        flash('!Error al actualizar!')
+    return render_template('/bibliotecario/consultar.html', bibl=bibliotecario.consultaGeneral())
+
+
+
+@app.route('/bibliotecario/eliminarBibliotecario/<int:id>')
+#@login_required
+def eliminarBibliotecario(id):
+    bibliotecario = Bibliotecario()
+    bibliotecario.eliminar(id)
+    flash('Registro del Bibliotecario eliminado con exito')
+    return redirect(url_for('consultarBibliotecario'))
 
 
 if __name__ == '__main__':
