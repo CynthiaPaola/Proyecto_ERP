@@ -459,9 +459,10 @@ class Usuarios(db.Model):
         # ------------------------------------------------------Bibliotecario---------------------------------------------------
         # -----------------------------------------------------------------------------------------------------------------------
 
-class Bibliotecario(db.model):
+class Bibliotecario(db.Model):
     __tablename__ = 'bibliotecario'
     idBibliotecario = Column(Integer, primary_key=True)
+    idUsuario = Column(Integer, ForeignKey,('usuario.idUsuario'))
     nombre = Column(String(45), nullable=False)
     password_hash = Column(String(45), nullable=False)
     tipo = Column(Integer, nullable=False)
