@@ -826,3 +826,78 @@ def eliminarLogicaPrestamo(id):
     prestamo.eliminacionLogica(id)
     flash('Registro del Catalogo de Multas eliminado con exito')
     return redirect(url_for('consultarPrestamo'))
+
+# -----------------------------------------------------------------------------------
+# --------------------------------MULTAS PRESTAMO-------------------------------------
+# ________________________________________________________________________________
+
+
+@app.route('/multasprestamo/consultarMultasPrestamo')
+# @login_required
+def consultarMultasPrestamo():
+    multasprestamo = MultasPrestamo()
+    catalogo = CatalogoMultas()
+    prestamo = Prestamo()
+    return render_template('/multasprestamo/consultar.html', mult=multasprestamo.consultaGeneral(),
+                           catal=catalogo.consultaGeneral(), pre=prestamo.consultaGeneral())
+
+
+@app.route('/multasprestamo/registrarMultasPrestamo')
+# @login_required
+def registrarMultasPrestamo():
+    catalogo = CatalogoMultas()
+    prestamo = Prestamo()
+    return render_template('/multasprestamo/nuevo.html', catal=catalogo.consultaGeneral(),
+                           pre=prestamo.consultaGeneral())
+
+
+@app.route('/multasprestamo/guardandoMultasPrestamo', methods=['post'])
+# @login_required
+def guardandoMultasPrestamo():
+    multasprestamo = MultasPrestamo()
+    multasprestamo.idCatalogoMultas = request.form['idCatalogoMultas']
+    multasprestamo.idPrestamo = request.form['idPrestamo']
+    multasprestamo.cantPagar = request.form['cantPagar']
+    multasprestamo.fecha = request.form['fecha']
+    multasprestamo.insertar()
+    flash('multa registrado exitosamente')
+    return redirect(url_for('consultarMultasPrestamo'))
+
+
+@app.route('/multasprestamo/ver/<int:id>')
+# @login_required
+def editarMultasPrestamo(id):
+    multasprestamo = MultasPrestamo()
+    catalogo = CatalogoMultas()
+    prestamo = Prestamo()
+    return render_template('/multasprestamo/editar.html', mult=multasprestamo.consultaIndividual(id), catal=catalogo.consultaGeneral(), pre=prestamo.consultaGeneral())
+
+
+@app.route('/multasprestamo/editandoMultasPrestamo', methods=['post'])
+# @login_required
+def editandoMultasPrestamo():
+    try:
+        catalogo = CatalogoMultas()
+        prestamo = Prestamo()
+        multasprestamo = MultasPrestamo()
+        multasprestamo.idMultasPrestamo = request.form['idMultasPrestamo']
+        multasprestamo.idCatalogoMultas = request.form['idCatalogoMultas']
+        multasprestamo.idPrestamo = request.form['idPrestamo']
+        multasprestamo.cantPagar = request.form['cantPagar']
+        multasprestamo.fecha = request.form['fecha']
+        multasprestamo.actualizar()
+        flash('Datos actualizados con exito')
+    except:
+        flash('!Error al actualizar!')
+    return render_template('/multasprestamo/consultar.html', mult=multasprestamo.consultaGeneral(),
+                           catal=catalogo.consultaGeneral(), pre=prestamo.consultaGeneral())
+
+
+@app.route('/multasprestamo/eliminarMultasPrestamo/<int:id>')
+# @login_required
+def eliminarMultasPrestamo(id):
+    multasprestamo = MultasPrestamo()
+    multasprestamo.eliminar(id)
+    flash('Registro de Multas Prestamo eliminado con exito')
+    return redirect(url_for('consultarMultasPrestamo'))
+
