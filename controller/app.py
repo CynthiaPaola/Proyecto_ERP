@@ -47,22 +47,25 @@ def iniciandoSesion():
 #@login_required
 def inicio():
     return render_template('common/index.html')
-#________________________________________________________________________________
-#--------------------------------catalogoMultas----------------------------------
-#________________________________________________________________________________
+
+# ________________________________________________________________________________
+# --------------------------------catalogoMultas----------------------------------
+# ________________________________________________________________________________
 @app.route('/catalogoMultas/consultarCatalogoMultas')
-#@login_required
+# @login_required
 def consultarCatalogoMultas():
     catalogo = CatalogoMultas()
     return render_template('/catalogoMultas/consultar.html', catal=catalogo.consultaGeneral())
 
+
 @app.route('/catalogoMultas/registrarCatalogoMultas')
-#@login_required
+# @login_required
 def registrarCatalogoMultas():
     return render_template('/catalogoMultas/nuevo.html')
 
-@app.route('/catalogoMultas/guardandoCatalogoMultas',methods=['post'])
-#@login_required
+
+@app.route('/catalogoMultas/guardandoCatalogoMultas', methods=['post'])
+# @login_required
 def guardandoCatalogoMultas():
     catalogo = CatalogoMultas()
     catalogo.nombre = request.form['nombre']
@@ -73,14 +76,16 @@ def guardandoCatalogoMultas():
     flash('Catalogo de Multas registrado exitosamente')
     return redirect(url_for('consultarCatalogoMultas'))
 
+
 @app.route('/catalogoMultas/ver/<int:id>')
-#@login_required
+# @login_required
 def editarCatalogoMultas(id):
     catalogo = CatalogoMultas()
     return render_template('/catalogoMultas/editar.html', catal=catalogo.consultaIndividual(id))
 
-@app.route('/catalogoMultas/editandoCatalogoMultas',methods=['post'])
-#@login_required
+
+@app.route('/catalogoMultas/editandoCatalogoMultas', methods=['post'])
+# @login_required
 def editandoCatalogoMultas():
     try:
         catalogo = CatalogoMultas()
@@ -95,13 +100,14 @@ def editandoCatalogoMultas():
         flash('!Error al actualizar!')
     return render_template('/catalogoMultas/consultar.html', catal=catalogo.consultaGeneral())
 
-#@app.route('/catalogoMultas/eliminarCatalogoMultas/<int:id>')
-#@login_required
-#def eliminarCatalogoMultas(id):
-#    catalogo = CatalogoMultas()
-#    catalogo.eliminar(id)
-#    flash('Registro del Catalogo de Multas eliminado con exito')
- #   return redirect(url_for('consultarCatalogoMultas'))
+
+@app.route('/catalogoMultas/eliminarLogicaCatalogoMultas/<int:id>')
+# @login_required
+def eliminarLogicaCatalogoMultas(id):
+    catalogo = CatalogoMultas()
+    catalogo.eliminacionLogica(id)
+    flash('Registro del Catalogo de Multas eliminado con exito')
+    return redirect(url_for('consultarCatalogoMultas'))
 
 @app.route('/catalogoMultas/eliminarCatalogoMultas/<int:id>')
 # @login_required
@@ -110,6 +116,7 @@ def eliminarCatalogoMultas(id):
     catalogo.eliminar(id)
     flash('eliminacion')
     return redirect(url_for('consultarCatalogoMultas'))
+
 
 #________________________________________________________________________________
 #--------------------------------Categorias----------------------------------
