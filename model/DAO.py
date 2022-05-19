@@ -452,3 +452,44 @@ class Bibliotecario(db.Model):
         obj = self.consultaIndividual(id)
         db.session.delete(obj)
         db.session.commit()
+        
+#-----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------Multas Prestamo---------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+class MultasPrestamo(db.Model):
+    __tablename__ = 'multasprestamo'
+    idMultasPrestamo = Column(Integer, primary_key=True)
+    idCatalogoMultas=Column(Integer, ForeignKey('catalogomultas.idCatalogoMultas'))
+    idPrestamo=Column(Integer, ForeignKey('prestamo.idPrestamo'))
+    cantPagar= Column(Float, nullable=False)
+    fecha = Column(Date, nullable=False)
+
+
+    def consultaGeneral(self):
+        return self.query.all()
+
+    def consultaIndividual(self, id):
+        return self.query.get(id)
+
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self, id):
+        obj = self.consultaIndividual(id)
+        db.session.delete(obj)
+        db.session.commit()
+
+    def eliminacionLogica(self, id):
+        obj = self.consultaIndividual(id)
+        obj.estatus = '0'
+        obj.actualizar()
