@@ -25,6 +25,7 @@
                             <th class="text-center">ESTATUS</th>
                             <th class="text-center">VER</th>
                             <th class="text-center">ELIMINAR</th>
+                        <th class="text-center">ELIMINACION LOGICA</th>
                         </thead>
                         {% for catalogo in catal %}
                         <tr>
@@ -57,6 +58,11 @@
                              </script>
                             <td class="text-center">
                                 <a href="/catalogoMultas/eliminarCatalogoMultas/{{catalogo.idCatalogoMultas}}" type="submit" class="btn btn-success" onclick="return ConfirmDemo()">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a href="/catalogoMultas/eliminarLogicaCatalogoMultas/{{catalogo.idCatalogoMultas}}" type="submit" class="btn btn-success" onclick="return ConfirmDemo()">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>
@@ -114,7 +120,7 @@
                     }
                 },
                 scrollY: 400,
-                lengthMenu: [ [10, 25, -1], [10, 25, "All"] ],
+                lengthMenu: [ [5, 10, -1], [5, 10, "All"] ],
             });
         });
     </script>
