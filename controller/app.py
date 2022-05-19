@@ -738,3 +738,84 @@ def eliminarBibliotecario(id):
 if __name__ == '__main__':
     db.init_app(app)
     app.run(debug=True)
+
+# -----------------------------------------------------------------------------------
+# --------------------------------Prestamo-------------------------------------
+# ________________________________________________________________________________
+@app.route('/prestamo/consultarPrestamo')
+# @login_required
+def consultarPrestamo():
+    bibliotecario = Biblioteacario()
+    usuarios = Usuarios()
+    prestamo = Prestamo()
+    return render_template('/prestamo/consultar.html', pre=prestamo.consultaGeneral(), usu=usuarios.consultaGeneral(),
+                           bib=bibliotecario.consultaGeneral())
+
+
+@app.route('/prestamo/registrarPrestamo')
+# @login_required
+def registrarPrestamo():
+    bibliotecario = Biblioteacario()
+    usuarios = Usuarios()
+    return render_template('/prestamo/nuevo.html', usu=usuarios.consultaGeneral(), bib=bibliotecario.consultaGeneral())
+
+
+@app.route('/prestamo/guardandoPrestamo', methods=['post'])
+# @login_required
+def guardandoPrestamo():
+    prestamo = Prestamo()
+    prestamo.idUsuarios = request.form['idUsuarios']
+    prestamo.idBibliotecario = request.form['idBibliotecario']
+    prestamo.fechaprestamo = request.form['fechaprestamo']
+    prestamo.fechadevolucion = request.form['fechadevolucion']
+    prestamo.estatus = request.form['estatus']
+    prestamo.insertar()
+    flash('prestamo registrado exitosamente')
+    return redirect(url_for('consultarPrestamo'))
+
+@app.route('/prestamo/ver/<int:id>')
+# @login_required
+def editarPrestamo(id):
+    bibliotecario = Biblioteacario()
+    usuarios = Usuarios()
+    prestamo = Prestamo()
+    return render_template('/prestamo/editar.html', pre=prestamo.consultaIndividual(id),usu=usuarios.consultaGeneral(),bib=bibliotecario.consultaGeneral())
+
+
+@app.route('/prestamo/editandoPrestamo', methods=['post'])
+# @login_required
+def editandoPrestamo():
+    try:
+        bibliotecario = Biblioteacario()
+        usuarios = Usuarios()
+        prestamo = Prestamo()
+        prestamo.idPrestamo = request.form['idPrestamo']
+        prestamo.idUsuarios = request.form['idUsuarios']
+        prestamo.idBibliotecario = request.form['idBibliotecario']
+        prestamo.fechaprestamo = request.form['fechaprestamo']
+        prestamo.fechadevolucion = request.form['fechadevolucion']
+        prestamo.estatus = request.form['estatus']
+        prestamo.actualizar()
+        flash('Datos actualizados con exito')
+    except:
+        flash('!Error al actualizar!')
+    return render_template('/prestamo/consultar.html',  pre=prestamo.consultaGeneral(), usu=usuarios.consultaGeneral(),
+                           bib=bibliotecario.consultaGeneral())
+
+
+@app.route('/prestamo/eliminarPrestamo/<int:id>')
+# @login_required
+def eliminarPrestamo(id):
+    prestamo = Prestamo()
+    prestamo.eliminar(id)
+    flash('Registro de Multas Prestamo eliminado con exito')
+    return redirect(url_for('consultarPrestamo'))
+
+
+@app.route('/prestamo/eliminarLogicaPrestamo/<int:id>')
+# @login_required
+def eliminarLogicaPrestamo(id):
+    prestamo = Prestamo()
+    prestamo.eliminacionLogica(id)
+    flash('Registro del Catalogo de Multas eliminado con exito')
+    return redirect(url_for('consultarPrestamo'))
