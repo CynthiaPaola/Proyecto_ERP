@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+      <title>{% block title %}Libreria{% endblock %}</title>
+    </head>
+
+    <body>
+        {% include "common/navigation_bar.html" %}
+            {% block content %}
+                <div class="container-fluid text-center">
+                    <div class="row">
+                        <div class="col-sm-4" style="background-color: none;"></div>
+                        <div class="well col-sm-4">
+                        <h1 class="text-center">EDITAR VENTA</h1>
+
+
+                        <form action="/venta/editandoVenta" method="post" enctype="multipart/form-data">
+
+                            <div  class="form-group">
+                            <label for="estateName">idVenta</label>
+                            <input type="text" class="form-control" id="idVenta" value="{{ven.idVenta}}" placeholder="idVenta " maxlength="80" required name="idVenta" readonly>
+                        </div>
+                            <div  class="form-group">
+
+
+                            <label for="estateName">noTarjeta</label>
+
+                                <input class="form-control" type="text" value="{{ven.idTarjetas}}" name="idTarjetas" hidden>
+                                 {% for tarjetas in tar %}
+                                {%if ven.idTarjetas==tarjetas.idTarjetas%}
+                                <input class="form-control" type="text" value="{{tarjetas.noTarjeta}}" readonly>
+                                {%endif%}
+                                {% endfor %}
+
+                        </div>
+                            <div  class="form-group">
+                            <label for="estateName" >Bibliotecario</label>
+                            <input class="form-control" value="{{ven.idBibliotecario}}" name="idBibliotecario" hidden>
+                                 <input class="form-control" value="{{current_user.nombre}}" readonly >
+                                    <input value="{{tot}}" id="pes" hidden>
+                            </select>
+                        </div>
+
+
+                                <div  class="form-group">
+                            <label for="estateName">total</label>
+                            <input type="number" class="form-control" id="total" value="{{ven.total}}"  placeholder="total" maxlength="80"  name="total"  readonly>
+                        </div>
+
+                            <br>
+<script>
+
+function documentoCargado(){
+var num1 = document.getElementById("total").value;
+var num2 = document.getElementById("pes").value;
+var t = (parseInt(num1) + parseInt(num2));
+   	document.getElementById("total").value=t;
+}
+
+document.addEventListener('DOMContentLoaded', documentoCargado, false);
+                            </script>
+<script>
+
+ var fecha = new Date();
+document.getElementById("fecha").value = fecha.toJSON().slice(0,10);
+
+                            </script>
+                            <script>
+                                var cantidad=document.getElementById("cantidad");
+
+                                var boton_de_calcular = document.getElementById("boton_calc");
+                                boton_de_calcular.addEventListener("click", res);
+                                console.log(cantidad)
+                                function res() {
+                                        var multi = cantidad.value*100;
+                                        document.getElementById("total").value=multi;
+                                        console.log(total)
+                                    }
+
+                            </script>
+
+                                <script >
+
+        function ConfirmDemo() {
+
+            var mensaje = confirm("¿segur@ de hacer el cambio?");
+
+            if (mensaje==true) {
+            return true;
+            }
+
+            else {
+            return false;
+            }
+        }
+
+    </script>
+<br>
+
+                        <nav id="bloqueBotones">
+                           <button type="submit" class="btn btn-success" onclick="return ConfirmDemo()" >Registrar Libros</button>
+                            <a href="/venta/consultarVenta" class="btn btn-warning">Registrar venta</a>
+
+                        </nav>
+                        </form>
+                        <br>
+                            {% if get_flashed_messages() %}
+                                <div id="menssageAlert" class="alert alert-success alert-dismissible">
+                            {% for message in get_flashed_messages() %}
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>{{message}}</strong>
+                            {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+        <table  id="tablax" class="table">
+                        <thead class="thead-dark">
+                            <th class="text-center">ID</th>
+                            <th class="text-center">LIBROS</th>
+                            <th class="text-center">PRECIO</th>
+                            <th class="text-center">CANTIDAD</th>
+                            <th class="text-center">SUBTOTAL</th>
+
+
+
+                        </thead>
+
+                        {% for carrito in ca %}
+                        <tr>
+
+                            <td class="text-center">{{carrito.idCarrito}}</td>
+                            {% for libros in lib %}
+                            {% if libros.idLibros==carrito.idLibros %}
+                            <td class="text-center">{{libros.titulo}}</td>
+                            {% endif %}
+                             {% endfor %}
+                            <td class="text-center">{{carrito.precio}}</td>
+                             <td class="text-center">{{carrito.cantidad}}</td>
+                            <td class="text-center">{{carrito.subtotal}}</td>
+                            <td class="text-center">
+
+                         </td>
+                            {% endfor %}
+                        </tr>
+        </table>
+            {% endblock %}
+        <p class="text text-center">Este es el pie de pagina</p>
+
+    </body>
+</html>
